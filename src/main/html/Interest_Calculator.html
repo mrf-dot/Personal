@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title>Interest Calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+            overflow-x: hidden;
+        }
+    </style>
+    <script>
+        function interest() {
+            var P = document.getElementById('P').value - 0;
+            var r = (document.getElementById('r').value - 0) / 100;
+            var n = document.getElementById('n').value - 0;
+            var t = document.getElementById('t').value - 0;
+            var solution;
+            if (n == 0) {
+                solution = (P * r * t) + P;
+            } else {
+                solution = P * (1 + (r / n)) ** (n * t);
+            }
+            solution = parseFloat(solution.toFixed(2));
+            document.getElementById('interestA').innerHTML = '$' + solution;
+            document.getElementById('textarea').innerHTML = '$' + solution;
+        }
+    </script>
+    <script>
+        function copySol() {
+            if (document.getElementById('textarea').innerHTML == '') {
+                var sol = '$0'
+            } else {
+                sol = document.getElementById('textarea')
+            }
+            sol.select();
+            document.execCommand('copy');
+            document.getElementById('interestA').innerHTML = 'Text copied!';
+        }
+    </script>
+</head>
+
+<body>
+    <textarea style="margin-left:99988px" id='textarea'></textarea>
+    <h1>Interest Calculator</h1>
+    <form>
+        <p>Principal (initial investment) [P] <input type="number" id='P' value='' oninput='interest()'></p>
+        <p>Annual nomial interest rate [r] <input type='number' id='r' value='' oninput='interest()'> %</p>
+        <p>Number of times compounded each year (Compound interest) [n] <input type='number' value='' id='n' oninput='interest()'></p>
+        <p>Number of years [t] <input type='number' id='t' oninput='interest()'></p>
+        <var id='interestA' value='' style=" border: thin solid black; font-style: normal;">$0</var> <button onclick="copySol()">&lt;Copy</button>
+    </form>
+    <textarea style="margin-left:99988px" id='textarea'></textarea>
+</body>

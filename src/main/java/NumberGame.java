@@ -12,50 +12,35 @@ import java.util.Scanner;
  * will then be prompted to guess again
  */
 public class NumberGame {
+	public static Scanner scanStr = new Scanner(System.in), scanNum = new Scanner(System.in);
+
 	/**
 	 * Creates the cli for the program.
 	 *
 	 * @param args added for semantics
 	 */
 	public static void main(String[] args) {
-		Scanner scanNum = new Scanner(System.in);
-		Scanner scanStr = new Scanner(System.in);
-		System.out.println("This program is a number guessing game based on a user-defined random range.");
-		System.out.print("1\t1-100\n"
+		System.out.print("This is a number guessing game.\n"
+				+ "1\t1-100\n"
 				+ "2\t1-1,000\n"
-				+ "3\t1-10,000\n"
+				+ "3\t1-10,000 (Default)\n"
 				+ "4\t1-100,000\n"
-				+ "5\t1-1,000,000\n");
-		int randomRange;
-		do {
-			System.out.print("Select a range: ");
-			randomRange = scanNum.nextInt();
-		} while (randomRange < 1 || randomRange > 5);
-		int randomNumber;
+				+ "5\t1-1,000,000\n"
+				+ "Select a range: ");
+		int difficulty = getDifficulty();
 		int rounds = 0;
 		int wins = 0;
 		int totalGuesses = 0;
-		int roundGuesses;
-		int currentGuess;
-		String playAgain = "";
-		boolean correctGuess = false;
-		do {
-			randomNumber = getRandom(randomRange);
-			roundGuesses = 0;
-			do {
-				System.out.print("Try to guess my number: ");
-				currentGuess = scanNum.nextInt();
-				correctGuess = checkNum(currentGuess, randomNumber);
-				roundGuesses++;
-			} while (roundGuesses < 101 & !correctGuess);
-			totalGuesses += roundGuesses;
-			rounds++;
-			if (correctGuess) {
+		while (true) {
+			int roundGuesses = guessingRound(getRandom(difficulty));
+			if (roundGuesses != 100) {
 				wins++;
 				System.out.println("Congratulations! You won.");
 			} else {
 				System.out.println("You lost.");
 			}
+			totalGuesses += roundGuesses;
+			rounds++;
 			System.out.printf("%nYour game stats are:%n"
 					+ "Round Guesses:\t\t%d%n"
 					+ "Total Guesses:\t\t%d%n"
@@ -63,13 +48,33 @@ public class NumberGame {
 					+ "Rounds played:\t\t%d%n"
 					+ "Win ratio:\t\t%.2f%%%n%n",
 					roundGuesses, totalGuesses, totalGuesses / rounds, rounds, ((double) wins / rounds) * 100);
-			do {
-				System.out.print("Would you like to play again? (y/n): ");
-				playAgain = scanStr.nextLine().toLowerCase();
-			} while (!playAgain.equals("y") && !playAgain.equals("n"));
-		} while (playAgain.equals("y"));
-		scanStr.close();
-		scanNum.close();
+			playAgain();
+		}
+	}
+
+	/**
+	 * This method executes a round of the guessing game. The client is given
+	 * 100 tries to guess the a randomly chosen number. The function will
+	 * return the number of attempts the user took to guess the number. If the
+	 * client takes more than 100 tries the method will return 100.
+	 *
+	 * @param correct An number the client will attempt to guess the identity of
+	 * @return the number of attempts the client took to guess the number
+	 */
+	public static int guessingRound(int correct) {
+		for (int i = 1; i < 101; i++) {
+			System.out.print("Try to guess my number: ");
+			if (checkNum(scanNum.nextInt(), correct))
+				return i;
+		}
+		return 100;
+	}
+
+	public static int getDifficulty() {
+		int difficulty = 3;
+		if (scanNum.hasNextInt())
+			difficulty = scanNum.nextInt();
+		return (difficulty < 1 || difficulty > 5) ? 3 : difficulty;
 	}
 
 	/**
@@ -83,20 +88,7 @@ public class NumberGame {
 	 * @return a number in a range based on a number 1-5 from 100 to 1,000,000
 	 */
 	public static int getRandom(int difficulty) {
-		switch (difficulty) {
-			case 1:
-				return (int) (Math.random() * 100) + 1;
-			case 2:
-				return (int) (Math.random() * 1_000) + 1;
-			case 3:
-				return (int) (Math.random() * 10_000) + 1;
-			case 4:
-				return (int) (Math.random() * 100_000) + 1;
-			case 5:
-				return (int) (Math.random() * 1_000_000) + 1;
-			default:
-				return (int) (Math.random() * 10_000) + 1;
-		}
+		return (int) (Math.random() * Math.pow(10, difficulty + 1)) + 1;
 	}
 
 	/**
@@ -110,14 +102,28 @@ public class NumberGame {
 	 * @return true if guessedNum is equal to realNum
 	 */
 	public static boolean checkNum(int guessedNum, int realNum) {
-		if (guessedNum > realNum) {
-			System.out.println("Your guess is too high.");
-			return false;
-		} else if (guessedNum < realNum) {
-			System.out.println("Your guess is too low.");
-			return false;
-		} else {
+		if (guessedNum == realNum)
 			return true;
+		if (guessedNum > realNum)
+			System.out.println("Your guess is too high.");
+		if (guessedNum < realNum)
+			System.out.println("Your guess is too low.");
+		return false;
+	}
+
+	/**
+	 * Prompts the client to enter whether they wish to play again.
+	 */
+	public static void playAgain() {
+		while (true) {
+			System.out.print("Would you like to play again? (y/n): ");
+			String userChoice = scanStr.nextLine().toLowerCase();
+			if (userChoice.equals("y"))
+				return;
+			else if (userChoice.equals("n"))
+				System.exit(0);
+			else
+				System.out.println("Please enter either 'y' or 'n'.");
 		}
 	}
 }
