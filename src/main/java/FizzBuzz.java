@@ -8,4 +8,8 @@ public class FizzBuzz {
 			System.out.println((fizzString.isBlank()) ? i : fizzString);
 		}
 	}
+
+	public static void superfluous() {
+		return;
+	}
 }

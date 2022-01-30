@@ -107,3 +107,27 @@ Write-Output "`e[47m$(" " * 54)`e[0m"
 for ($i=0; $i -lt 6; $i++) {
 	Write-Output "`e[48;5;28m$(" " * 54)`e[0m"
 }
+Write-Output "`nFinnish Flag:`n"
+# 36x11
+# `e[48;5;18m
+for ($i=0; $i -lt 8; $i++) {
+	Write-Output "`e[47m$(" " * 20)`e[48;5;18m$(" " * 12)`e[47m$(" " * 40)`e[0m"
+}
+for ($i = 0; $i -lt 6; $i++) {
+	Write-Output "`e[48;5;18m$(" " * 72)`e[0m"
+}
+for ($i=0; $i -lt 8; $i++) {
+	Write-Output "`e[47m$(" " * 20)`e[48;5;18m$(" " * 12)`e[47m$(" " * 40)`e[0m"
+}
+Write-Output "`nIcelandic Flag:`n"
+for ($i = 0; $i -lt 7; $i++) {
+	Write-Output "`e[48;5;18m$(" " * 14)`e[47m$(" " * 2)`e[48;5;1m$(" " * 4)`e[47m$(" " * 2)`e[48;5;18m$(" " * 28)`e[0m"
+}
+Write-Output "`e[47m$(" " * 16)`e[48;5;1m$(" " * 4)`e[47m$(" " * 30)`e[0m"
+for ($i = 0; $i -lt 2; $i++) {
+	Write-Output "`e[48;5;1m$(" " * 50)`e[0m"
+}
+Write-Output "`e[47m$(" " * 16)`e[48;5;1m$(" " * 4)`e[47m$(" " * 30)`e[0m"
+for ($i = 0; $i -lt 7; $i++) {
+	Write-Output "`e[48;5;18m$(" " * 14)`e[47m$(" " * 2)`e[48;5;1m$(" " * 4)`e[47m$(" " * 2)`e[48;5;18m$(" " * 28)`e[0m"
+}

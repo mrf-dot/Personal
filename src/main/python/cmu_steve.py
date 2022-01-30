@@ -1,4 +1,4 @@
-from cmu_graphics import Group, Line, Polygon, Rect, app, cmu_graphics, gradient, rgb
+from cmu_graphics import *
 # index to keep track of the armor level
 app.level = 0
 
@@ -103,4 +103,4 @@ def onMousePress(mouseX, mouseY):
     chestplate.border = app.borderColors[app.level]
     leggings.fill = app.leggingsColors[app.level]
     leggings.border = app.borderColors[app.level]
-cmu_graphics.loop()
+cmu_graphics.loop
