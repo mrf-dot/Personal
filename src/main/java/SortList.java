@@ -5,12 +5,15 @@ public class SortList {
 	private static final int size = 10;
 	// Randomize the list
 	private static final boolean random = true;
-	// Sort the list
-	private static final boolean sort = true;
+	// Sort the list with bubblesort
+	private static final boolean bubblesort = false;
+	// Sort the list with quicksort
+	private static final boolean quicksort = true;
+	// Sort the list with quicksort
 	// Print out each randomization operation
-	private static final boolean randVerbose = false;
+	private static final boolean randVerbose = true;
 	// Print out each sort operation
-	private static final boolean sortVerbose = false;
+	private static final boolean sortVerbose = true;
 	// Print out each swap
 	private static boolean swapVerbose = true;
 	// Milliseconds that pass between each operation
@@ -23,7 +26,7 @@ public class SortList {
 	private static final String red = "\u001B[41m";
 	private static final String green = "\u001B[42m";
 	private static boolean verbose;
-	private static int[] list;
+	private static int[] list = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
 	public static void main(String[] args) {
 		fill();
@@ -36,20 +39,51 @@ public class SortList {
 			swapVerbose = tmp;
 			System.out.printf("%nRandomized List:\t%s%n%n", arrayToString());
 		}
-		if (sort) {
+		if (bubblesort || quicksort) {
 			System.out.println("Begin Sorting.\n");
 			verbose = sortVerbose;
-			quicksort();
+			if (bubblesort)
+				bubblesort();
+			if (quicksort)
+				quicksort();
 			System.out.printf("%nFinished in %d swaps (%d total operations).%nSorted List:\t%s",
 					swaps, operations, arrayToString());
 		}
+	}
+
+	private static void bubblesort() {
+		// boolean ordered = true;
+		// do {
+		// 	ordered = true;
+		// 	for (int i = 0; i < list.length - 1; i++) {
+		// 		operationVerbosity(i, i + 1);
+		// 		operations++;
+		// 		if (list[i] > list[i + 1]) {
+		// 			swap(i, i + 1);
+		// 			ordered = false;
+		// 			swaps++;
+		// 		}
+		// 	}
+		// } while (!ordered);
+		boolean ordered = true;
+		for (int i = 0; i < list.length -1; i++) {
+			operationVerbosity(i, i+1);
+			operations++;
+			if (list[i] > list[i+1]) {
+				swap(i, i+1);
+				ordered = false;
+				swaps++;
+			}
+		}
+		if (!ordered)
+			bubblesort();
 	}
 
 	private static void quicksort() {
 		quicksort(0, list.length - 1);
 	}
 
-	// Based the Hoare partition scheme of quicksort
+	// Based on the Hoare partition scheme of quicksort
 	// https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
 	private static void quicksort(int start, int stop) {
 		if (start >= stop || start < 0 || stop > list.length - 1)
@@ -93,11 +127,7 @@ public class SortList {
 	private static String arrayToString(int index1, int index2, String color1, String color2) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.length; i++)
-			sb.append(i == index2
-					? color2
-					: i == index1
-							? color1
-							: "")
+			sb.append(i == index2 ? color2 : i == index1 ? color1 : "")
 					.append(list[i]).append("\u001B[0m ");
 		return sb.toString();
 
@@ -106,8 +136,8 @@ public class SortList {
 	// Based on the Fischer Yates Algorithm
 	// https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
 	private static void randomize() {
-		for (int i = 0; i < list.length - 1; i++) {
-			int j = (int) (Math.random() * i);
+		for (int i = list.length - 1; i > 0; i--) {
+			int j = (int) (Math.random() * (i + 1));
 			swap(i, j);
 		}
 	}

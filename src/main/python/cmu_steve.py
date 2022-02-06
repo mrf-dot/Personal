@@ -103,4 +103,4 @@ def onMousePress(mouseX, mouseY):
     chestplate.border = app.borderColors[app.level]
     leggings.fill = app.leggingsColors[app.level]
     leggings.border = app.borderColors[app.level]
-cmu_graphics.loop
+cmu_graphics.loop()

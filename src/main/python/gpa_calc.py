@@ -33,7 +33,7 @@ Which GPA would you like to view?
 2\tWeighted
                     """
                 )
-                weighted = True if check_option(1, 3) == 2 else False
+                weighted = check_option(1, 3) == 2
                 print(f"{year_gpa(year, weighted):.2f}")
             case 7:
                 print(
@@ -43,7 +43,7 @@ Which GPA would you like to view?
 2\tWeighted
                     """
                 )
-                weighted = True if check_option(1, 3) == 2 else False
+                weighted = check_option(1, 3) == 2
                 print(f"{cumulative_gpa(weighted):.2f}")
             case 8:
                 check_college(cumulative_gpa())
