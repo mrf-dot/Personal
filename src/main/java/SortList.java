@@ -26,7 +26,7 @@ public class SortList {
 	private static final String red = "\u001B[41m";
 	private static final String green = "\u001B[42m";
 	private static boolean verbose;
-	private static int[] list = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+	private static int[] list;
 
 	public static void main(String[] args) {
 		fill();
@@ -46,37 +46,25 @@ public class SortList {
 				bubblesort();
 			if (quicksort)
 				quicksort();
-			System.out.printf("%nFinished in %d swaps (%d total operations).%nSorted List:\t%s",
-					swaps, operations, arrayToString());
+			System.out.printf("Sorted List:\t%s%nFinished in %d swaps (%d total operations).",
+					arrayToString(), swaps, operations );
 		}
 	}
 
 	private static void bubblesort() {
-		// boolean ordered = true;
-		// do {
-		// 	ordered = true;
-		// 	for (int i = 0; i < list.length - 1; i++) {
-		// 		operationVerbosity(i, i + 1);
-		// 		operations++;
-		// 		if (list[i] > list[i + 1]) {
-		// 			swap(i, i + 1);
-		// 			ordered = false;
-		// 			swaps++;
-		// 		}
-		// 	}
-		// } while (!ordered);
 		boolean ordered = true;
-		for (int i = 0; i < list.length -1; i++) {
-			operationVerbosity(i, i+1);
-			operations++;
-			if (list[i] > list[i+1]) {
-				swap(i, i+1);
-				ordered = false;
-				swaps++;
+		do {
+			ordered = true;
+			for (int i = 0; i < list.length - 1; i++) {
+				operationVerbosity(i, i + 1);
+				operations++;
+				if (list[i] > list[i + 1]) {
+					swap(i, i + 1);
+					ordered = false;
+					swaps++;
+				}
 			}
-		}
-		if (!ordered)
-			bubblesort();
+		} while (!ordered);
 	}
 
 	private static void quicksort() {
