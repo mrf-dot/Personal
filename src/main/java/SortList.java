@@ -40,6 +40,8 @@ public class SortList {
 			System.out.printf("%nRandomized List:\t%s%n%n", arrayToString());
 		}
 		if (bubblesort || quicksort) {
+			swaps = 0;
+			operations = 0;
 			System.out.println("Begin Sorting.\n");
 			verbose = sortVerbose;
 			if (bubblesort)
@@ -57,11 +59,9 @@ public class SortList {
 			ordered = true;
 			for (int i = 0; i < list.length - 1; i++) {
 				operationVerbosity(i, i + 1);
-				operations++;
 				if (list[i] > list[i + 1]) {
 					swap(i, i + 1);
 					ordered = false;
-					swaps++;
 				}
 			}
 		} while (!ordered);
@@ -74,11 +74,11 @@ public class SortList {
 	// Based on the Hoare partition scheme of quicksort
 	// https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
 	private static void quicksort(int start, int stop) {
-		if (start >= stop || start < 0 || stop > list.length - 1)
-			return;
-		int pivot = partition(start, stop);
-		quicksort(start, pivot);
-		quicksort(pivot + 1, stop);
+		if (start >= 0 && stop >= 0 && start < stop) {
+			int pivot = partition(start, stop);
+			quicksort(start, pivot);
+			quicksort(pivot + 1, stop);
+		}
 	}
 
 	private static int partition(int start, int stop) {
@@ -86,22 +86,18 @@ public class SortList {
 		int pivot = list[pivotIndex];
 		int leftIndex = start - 1;
 		int rightIndex = stop + 1;
-		while (true) {
+		for (;;) {
 			do {
 				leftIndex++;
-				operations++;
 				operationVerbosity(leftIndex, pivotIndex);
 			} while (list[leftIndex] < pivot);
 			do {
 				rightIndex--;
-				operations++;
 				operationVerbosity(rightIndex, pivotIndex);
 			} while (list[rightIndex] > pivot);
 			if (leftIndex >= rightIndex)
 				return rightIndex;
 			swap(leftIndex, rightIndex);
-			operations++;
-			swaps++;
 		}
 	}
 
@@ -156,6 +152,7 @@ public class SortList {
 	}
 
 	public static void swapVerbosity(int index1, int index2) {
+		swaps++;
 		verbosity(index1, index2, green, green, swapVerbose);
 	}
 
@@ -164,6 +161,7 @@ public class SortList {
 	}
 
 	public static void verbosity(int index1, int index2, String color1, String color2, boolean swap) {
+		operations++;
 		if ((swap && swapVerbose) || verbose) {
 			System.out.println(arrayToString(index1, index2, color1, color2));
 			sleep();
