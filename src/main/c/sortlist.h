@@ -1,31 +1,19 @@
 // Amount of items in the list
-#define SIZE	10
+#define LIST_SIZE 1000000
 // Randomize the list
-#define RANDOM	1
+#define RANDOM 1
 // Sort the list with bubblesort
-#define BUBBLESORT	1
+#define BUBBLESORT 0
 // Sort the list with quicksort
-#define QUICKSORT	1
+#define QUICKSORT 1
 // Print out each randomization operation
-#define RANDVERBOSE	1
+#define RAND_VERBOSE 0
 // Print out each sort operation
-#define SORTVERBOSE	1
+#define SORT_VERBOSE 0
 // Print out each swap
-#define SWAPVERBOSE	1
+#define SWAP_VERBOSE 0
+// Print out the list at the end of randomization and sorting
+#define LIST_VERBOSE 0
 // Milliseconds that pass between each operation
-#define MILLISECONDS	1000
-
-const struct Operations {
-	int swaps;
-	int operations;
-};
-const struct Colors {
-	char *yellow;
-	char *red;
-	char *green;
-	char *none;
-};
-
-const struct Colors colors = {"\[43m", "\[41m", "\[42m", "\[0m"};
-struct Operations operations = {0, 0};
+#define MILLISECONDS 0
 

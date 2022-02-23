@@ -1,18 +1,79 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 #include "sortlist.h"
+
+struct Operations {
+	int swaps;
+	int comps;
+} operations = {0, 0};
+
+const struct Colors {
+	char *yellow;
+	char *red;
+	char *green;
+	char *none;
+} colors = {"\033[0;43m", "\033[0;41m", "\033[0;42m", "\033[0m"};
 
 int current_random = 0;
 int verbose;
-int[SIZE] list = fill();
+int list[LIST_SIZE];
 
+void
+prlist() {
+	for (int i = 0; i < LIST_SIZE; i++)
+		printf("%d ", list[i]);
+}
+
+void
+prclist(int i1, int i2, char *c1, char *c2) {
+	for (int i = 0; i < LIST_SIZE; i++) {
+		printf("%s%d%s ",
+				i == i2 ? c2 : i == i1 ? c1 : "",
+				list[i],
+				colors.none);
+	}
+	putchar('\n');
+
+}
+
+void
+disp(int i1, int i2, char *c1, char *c2, int swap) {
+	if ((swap && SWAP_VERBOSE) || verbose) {
+		prclist(i1, i2, c1, c2);
+		usleep(MILLISECONDS * 1000);
+	}
+}
+
+void
+disp_swap(int i1, int i2) {
+	operations.swaps++;
+	disp(i1, i2, colors.green, colors.green, 1);
+}
+
+void
+disp_comp(int i1, int i2) {
+	operations.comps++;
+	disp(i1, i2, colors.yellow, colors.red, 0);
+}
+
+void
+swap(int i1, int i2) {
+	int tmp = list[i1];
+	list[i1] = list[i2];
+	list[i2] = tmp;
+	disp_swap(i1, i2);
+}
 
 #if BUBBLESORT
-void bubblesort() {
+void
+bubblesort() {
 	int ordered = 1;
 	do {
 		ordered = 1;
-		for (int i = 0; i < list.length - 1; i++) {
-			op_verbose(i, i + 1);
+		for (int i = 0; i < LIST_SIZE - 1; i++) {
+			disp_comp(i, i + 1);
 			if (list[i] > list[i + 1]) {
 				swap(i, i + 1);
 				ordered = 0;
@@ -22,18 +83,13 @@ void bubblesort() {
 }
 #endif
 
-// Based on the Hoare partition scheme of quicksort
-// https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
+/*
+ * Based on the Hoare partition scheme of quicksort
+ * https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
+ */
 #if QUICKSORT
-void quicksort(int start, int stop) {
-	if (start >= 0 && stop >= 0 && start < stop) {
-		int p = partition(start, stop);
-		quicksort(start, p);
-		quicksort(p + 1, stop);
-	}
-}
-
-int partition(int start, int stop) {
+int
+partition(int start, int stop) {
 	int pindex = (stop + start) / 2;
 	int p = list[pindex];
 	int left = start - 1;
@@ -41,100 +97,88 @@ int partition(int start, int stop) {
 	while (1) {
 		do {
 			left++;
-			op_verbose(left, pindex);
+			disp_comp(left, pindex);
 		} while (list[left] < p);
 		do {
 			right--;
-			op_verbose(right, pindex);
+			disp_comp(right, pindex);
 		} while (list[right] > p);
 		if (left >= right)
 			return right;
 		swap(left, right);
 	}
 }
+
+void
+quicksort(int start, int stop) {
+	if (start >= 0 && stop >= 0 && start < stop) {
+		int p = partition(start, stop);
+		quicksort(start, p);
+		quicksort(p + 1, stop);
+	}
+}
 #endif
 
-void *prlist() {
-	for (int i = 0; i < sizeof(list), i++)
-		printf("%d ", list[i]);
-}
-
-void prclist(int i1, int i2, char *c1, char *c2) {
-	char *ccolor;
-	for (int i = 0; i < list.length; i++) {
-		ccolor = i == i2 ? c2 : i == i1 ? c1 : "";
-		printf("%s%d%s ", ccolor, list[i], color.none);
-	}
-
-}
 
 // Based on the Fischer Yates Algorithm
 // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+void
+fill() {
+	for (int i = 0; i < LIST_SIZE; i++)
+		list[i] = i + 1;
+}
+
 #if RANDOM
 void randomize() {
-	for (int i = list.length - 1; i > 0; i--) {
-		int j = (int) (Math.random() * (i + 1));
+	srand(time(0));
+	for (int i = LIST_SIZE - 1 ; i > 0; i--) {
+		int j = rand() % (i + 1);
 		swap(i, j);
 	}
 }
 
-void random() {
+void
+random() {
 	printf("\n\nBegin Randomization.\n");
-	current_random = 1
-	verbose = RANDVERBOSE;
+	current_random = 1;
+	verbose = RAND_VERBOSE;
 	randomize();
-	current_random = 0
+	current_random = 0;
+#if LIST_VERBOSE
 	printf("\nRandomized List:\t");
 	prlist();
+#endif
 	printf("\n\n");
 }
 #endif
 
-void fill() {
-	if (sizeof(list) > 0)
-		for (int i = 0; i < sizeof(list); i++)
-			list[i] = i + 1;
-}
-
-void swap(int i1, int i2) {
-	int tmp = list[i1];
-	list[i1] = list[i2];
-	list[i2] = tmp;
-	swap_verbose(i1, i2);
-}
-
-void swap_verbose(int i1, int i2) {
-	swaps++;
-	verbose(i1, i2, green, green, swapVerbose);
-}
-
-void op_verbose(int i1, int i2) {
-	verbose(i1, i2, Colors.yellow, Colors.red, 0);
-}
-
-void verbose(int i1, int i2, *c1, String c2, int swap) {
-	operations++;
-	if ((swap && swapVerbose) || verbose) {
-		prclist(i1, i2, c1, c2);
-		usleep(milliseconds);
-	}
-}
-
-void sort() {
+#if BUBBLESORT || QUICKSORT
+void
+sort() {
+	operations.swaps = 0;
 	printf("Begin Sorting.\n");
-	if (BUBBLESORT)
+#if BUBBLESORT
 		bubblesort();
-	if (QUICKSORT)
-		quicksort(0, sizeof(list) - 1);
+#else
+		quicksort(0, LIST_SIZE - 1);
+#endif
+#if LIST_VERBOSE
 	printf("Sorted List:\t");
 	prlist();
-	printf("\nFinished in %d swaps (%d total operations).", Operations.swaps, Operations.operations);
+#endif
+	printf("\nFinished in %d swaps and %d comparisons (%d total operations).",
+			operations.swaps, operations.comps, operations.swaps + operations.comps);
 }
+#endif
 
-int main() {
-	if (RANDOM)
-		random();
-	if (QUICKSORT || BUBBLESORT)
-		sort();
+int
+main() {
+	fill();
+#if RANDOM
+	random();
+#endif
+#if BUBBLESORT || QUICKSORT
+	sort();
+#endif
 }
 
