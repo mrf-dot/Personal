@@ -23,6 +23,7 @@ namespace Sample
                 s += (i % 5 == 0) ? "Buzz" : "";
                 Console.WriteLine((string.IsNullOrWhiteSpace(s)) ? i.ToString() : s);
             }
+	    Console.WriteLine();
         }
 
 	static void NameAndAge() {

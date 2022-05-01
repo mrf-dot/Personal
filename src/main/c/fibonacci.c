@@ -1,37 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <math.h>
 
-#define RECURSIVE
-#define ITERATIVE
-#define FORMULA
+#define PHI 1.618033988749895
 
-unsigned long fibnum(long index) {
-#ifdef RECURSIVE
-	if (index == 0 || index == 1)
-		return index;
-	return fibnum(index - 1) + fibnum(index - 2);
+uint64_t
+fib(int n) {
+	double numerator = pow(PHI, n) - pow(-PHI, -n);
+	double denominator = sqrt(5);
+	printf("The numerator is %f\n", numerator / denominator);
+	return numerator / denominator;
 }
-#endif
-#ifdef ITERATIVE
-	unsigned long last = 0, current = 1, next = 1;
-	for (int i = 0; i < index - 1; i++) {
-		next = current + last;
-		last = current;
-		current = next;
-	}
-	return current;
-}
-#endif
-#ifdef FORMULA
-	double const PHI (1 + sqrt(5)) / 2;
-	return round(pow(phi, index) sqrt(index)
 
 
-int main(int argc, char **argv) {
-	if (!argv[1])
-		return -1;
-	printf("%ld\n", fibnum(atoi(argv[1])));
-	return 0;
+int
+main(int argc, char **argv) {
+	for (int i = 0; i < 101; i++)
+		printf("%d:\t%ld\n", i, fib(i));
+	return 1;
 }
 

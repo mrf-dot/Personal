@@ -1,18 +1,16 @@
 #include <stdio.h>
 
 int
-main(void)
-{
-  int i, j, n;
-
-  for (i = 0; i < 11; i++) {
-    for (j = 0; j < 10; j++) {
-      n = 10*i + j;
-      if (n > 107) break;
-      printf("\033[%dm %3d\033[m", n, n);
-    }
-    printf("\n");
-  }
-  return 0;
+main(void) {
+	printf("\n\e[1;4m256-Color Foreground & Background Charts\e[0m");
+	for (int i = 38; i < 49; i++) {
+		for (int j = 0; j < 256; j++) {
+			printf("\e[%d;5;%dm%d    \e[0m", i, j, j);
+			if ((j+1) % 6 == 4) {
+				putchar('\n');
+			}
+		}
+	putchar('\n');
+	}
 }
 
