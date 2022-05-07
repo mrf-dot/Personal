@@ -81,7 +81,7 @@ def check_option(lower_bounds: int, upper_bounds: int, prompt: str = "=> ") -> i
 
 
 def read_gpa() -> dict:
-    path = "../resources/gpa.json"
+    path = "gpa.json"
     if not exists(path):
         write_gpa({"class": {}, "total classes": 0})
     with open(path) as gpa_file:
