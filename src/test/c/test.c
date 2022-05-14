@@ -2,6 +2,10 @@
 
 int
 main() {
-	printf("%d\n", sizeof(int));
+	unsigned char x = 1;
+	while (x != 0) {
+		printf("%d\n", x);
+		x++;
+	}
 }
 
