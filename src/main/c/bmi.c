@@ -51,7 +51,7 @@ new_bmi(double kg, double m) {
 
 void
 intepretation(float bmi) {
-	printf(bmi >= 40
+	puts(bmi >= 40
 			? "Obese (III)"
 			: bmi >= 35
 			? "Obese (II)"
@@ -66,12 +66,11 @@ intepretation(float bmi) {
 			: bmi >= 16
 			? "Underweight"
 			: "Severely Underweight");
-	putchar('\n');
 }
 
 void
 help() {
-	printf("BMI -- Authored by Mitch Feigenbaum\n\
+	puts("BMI -- Authored by Mitch Feigenbaum\n\
 Options:\n\
 \t-k\t\tMass in kilograms\n\
 \t-p\t\tMass in pounds\n\
@@ -80,8 +79,7 @@ Options:\n\
 \t-i\t\tHeight in inches (may be used in conjunction with -f)\n\
 \t-n\t\tUse the proposed \"New BMI\" (accounts for short and tall heights)\n\
 \t-a\t\tAnalyze BMI qualitatively\n\
-\t-h\t\tPrint this help message\n");
-
+\t-h\t\tPrint this help message");
 }
 
 int
@@ -133,9 +131,7 @@ main(int argc, char **argv) {
 		fprintf(stderr, "%s: invalid height/mass provided\n", argv[0]);
 		return 1;
 	}
-	float bmi = new_bmip
-		? new_bmi(kilograms, meters)
-		: old_bmi(kilograms, meters);
+	float bmi = new_bmip ? new_bmi(kilograms, meters) : old_bmi(kilograms, meters);
 	printf("%.1f\n", bmi);
 	if (interpretp)
 		intepretation(bmi);

@@ -26,7 +26,7 @@ int cards_size = DECK_SIZE;
 
 void
 print_unflipped() {
-	printf(UNFLIPPED);
+	fputs(UNFLIPPED, stdout);
 	putchar('\t');
 }
 
@@ -193,16 +193,25 @@ action() {
 }
 
 int
+card_val(int card) {
+	int rank = get_rank(card);
+	if (rank >= FACE_VAL)
+		return FACE_VAL;
+	else if (rank > 1)
+		return rank + 1;
+	else
+		return 1;
+}
+
+int
 hand_sum(int *hand, int size) {
-	int sum = 0, aces = 0, rank;
+	int sum = 0, aces = 0, val;
 	for (int i = 0; i < size; i++) {
-		rank = get_rank(hand[i]);
-		if (rank >= FACE_VAL)
-			sum += FACE_VAL;
-		else if (rank > 1)
-			sum += rank + 1;
-		else
+		val = card_val(hand[i]);
+		if (val == 1)
 			aces++;
+		else
+			sum += val;
 	}
 	if (aces > 0)
 		sum += aces - 1;
@@ -242,16 +251,17 @@ contest(Gambler *dealer, Gambler *player, int bet) {
 		deal(dealer);
 		print_cards(dealer->hand, dealer->n_cards);
 	}
-	if (hand_sum(dealer->hand, dealer->n_cards) > BLACKJACK
-			|| hand_sum(dealer->hand, dealer->n_cards) < hand_sum(player->hand, player->n_cards)) {
-		printf("You win! (+%d)\n", (int) (bet * PAYOUT - bet));
+	int dealer_sum = hand_sum(dealer->hand, dealer->n_cards);
+	int player_sum = hand_sum(player->hand, player->n_cards);
+	if (dealer_sum > BLACKJACK || dealer_sum < player_sum) {
+		printf("You win! (+$%d)\n", (int) (bet * PAYOUT - bet));
 		bet *= PAYOUT;
 		player->balance += bet;
-	} else if (hand_sum(dealer->hand, dealer->n_cards) == hand_sum(player->hand, player->n_cards)) {
+	} else if (dealer_sum == player_sum) {
 		player->balance += bet;
-		printf("Draw.\n");
+		puts("Draw.");
 	} else {
-		printf("You lose! (-%d)\n", bet);
+		printf("You lose! (-$%d)\n", bet);
 	}
 }
 
@@ -303,7 +313,7 @@ game(Gambler *dealer, Gambler *player) {
 	} else if (stay) {
 		contest(dealer, player, bet);
 	} else {
-		printf("It appears an error has occurred, what a shame.\n");
+		puts("It appears an error has occurred, what a shame.");
 	}
 }
 
@@ -327,23 +337,23 @@ main(int argc, char **argv) {
 		return 1;
 	}
 	int c;
-	int card[1];
+	int card;
 	while ((c = getopt(argc, argv, "bc:rosh")) != -1)
 		switch(c) {
 			case 'b':
 				blackjack();
 				break;
 			case 'c':
-				card[0] = abs(atoi(optarg));
-				if (card[0] > DECK_SIZE) {
+				card = abs(atoi(optarg));
+				if (card > DECK_SIZE) {
 					fprintf(stderr, "%s: option -c requires an argument within the range of a standard deck (1-52).\n", argv[0]);
 					return 1;
 				}
-				print_cards(card, 1);
+				print_cards(&card, 1);
 				break;
 			case 'r':
-				card[0] = randombytes_uniform(DECK_SIZE + 1);
-				print_cards(card, 1);
+				card = randombytes_uniform(DECK_SIZE + 1);
+				print_cards(&card, 1);
 				break;
 			case 'o':
 				fill_deck();
