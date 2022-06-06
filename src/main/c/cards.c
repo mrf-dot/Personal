@@ -19,7 +19,7 @@
 #define RED_ON_WHITE "\e[0;31m\e[47m"
 #define RESET "\e[0m"
 
-const char *ranks[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", };
+const char *ranks[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 const char *suites[] = {"♣","♦","♥", "♠"};
 int cards[DECK_SIZE];
 int cards_size = DECK_SIZE;
@@ -32,30 +32,26 @@ print_unflipped() {
 
 char *
 get_color(int suite) {
-	if (suite == 1 || suite == 2)
-		return RED_ON_WHITE;
-	return BLACK_ON_WHITE;
+	return (suite == 1 || suite == 2) ? RED_ON_WHITE : BLACK_ON_WHITE;
 }
 
 char *
 get_spaces(int rank) {
-	if (rank == -1)
-		return  "           ";
-	if (!strcmp(ranks[rank], "10"))
-		return  "         ";
-	return "          ";
+	return rank == -1
+		? "           "
+		: !strcmp(ranks[rank], "10")
+		? "         "
+		: "          ";
 }
 
 int
 get_rank(int n) {
-	n--;
-	return n % (sizeof(ranks) / sizeof(ranks[0]));
+	return (n - 1) % (sizeof(ranks) / sizeof(ranks[0]));
 }
 
 int
 get_suite(int n) {
-	n--;
-	return (float) n / DECK_SIZE * (sizeof(suites) / sizeof(suites[0]));
+	return (float) (n - 1) / DECK_SIZE * (sizeof(suites) / sizeof(suites[0]));
 }
 
 void
@@ -100,25 +96,20 @@ print_header(int card) {
 void
 print_hand(int *hand, int lo, int to) {
 	putchar('\n');
-	for (int i = lo; i < to; i++) {
-		print_header(hand[i]);
-	}
+	int i, j;
+	for (i = lo; i < to; print_header(hand[i++]));
 	putchar('\n');
-	for (int i = 0; i < CARD_HEIGHT / 2; i++) {
-		for (int i = lo; i < to; i++)
-			print_body(hand[i]);
+	for (i = 0; i < CARD_HEIGHT / 2; i++) {
+		for (j = lo; j < to; print_body(hand[j++]));
 		putchar('\n');
 	}
-	for (int i = lo; i < to; i++)
-		print_middle(hand[i]);
+	for (i = lo; i < to; print_middle(hand[i++]));
 	putchar('\n');
-	for (int i = 0; i < CARD_HEIGHT / 2; i++) {
-		for (int i = lo; i < to; i++)
-			print_body(hand[i]);
+	for (i = 0; i < CARD_HEIGHT / 2; i++) {
+		for (j = lo; j < to; print_body(hand[j++]));
 		putchar('\n');
 	}
-	for (int i = lo; i < to; i++)
-		print_footer(hand[i]);
+	for (i = lo; i < to; print_footer(hand[i++]));
 	putchar('\n');
 	putchar('\n');
 }
@@ -140,8 +131,9 @@ fill_deck() {
 
 void
 shuffle_deck() {
-	uint32_t j, tmp;
-	for (int i = DECK_SIZE - 1; i > 0; i--) {
+	uint32_t i, j, tmp;
+	// Fischer-Yates Shuffle
+	for (i = DECK_SIZE - 1; i > 0; i--) {
 		j = randombytes_uniform(i+1);
 		tmp = cards[i];
 		cards[i] = cards[j];
@@ -167,8 +159,7 @@ help() {
 	printf("\t-h\t\tPrint this help message\n");
 }
 
-typedef struct
-Gamblers {
+typedef struct {
 	int hand[BLACKJACK];
 	int balance;
 	int n_cards;
@@ -176,12 +167,9 @@ Gamblers {
 
 char
 action() {
-	char choice;
 	printf("[H]it\t[S]tay\t[F]old\t[Q]uit\t");
-	do {
-	scanf("%c", &choice);
-	while(getchar() != '\n');
-	} while (choice != 'H'
+	char choice;
+	while ((choice = getchar()) != 'H'
 			&& choice != 'S'
 			&& choice != 'F'
 			&& choice != 'Q'
@@ -193,41 +181,26 @@ action() {
 }
 
 int
-card_val(int card) {
-	int rank = get_rank(card);
-	if (rank >= FACE_VAL)
-		return FACE_VAL;
-	else if (rank > 1)
-		return rank + 1;
-	else
-		return 1;
-}
-
-int
 hand_sum(int *hand, int size) {
-	int sum = 0, aces = 0, val;
+	int sum = 0, aces = 0, rank;
 	for (int i = 0; i < size; i++) {
-		val = card_val(hand[i]);
-		if (val == 1)
-			aces++;
-		else
-			sum += val;
+		rank = get_rank(hand[i]) + 1;
+		sum += (rank > FACE_VAL) ? FACE_VAL : rank;
+		aces = aces || rank == 1;
 	}
-	if (aces > 0)
-		sum += aces - 1;
-	if (sum + ACE_HIGH <= BLACKJACK && aces > 0)
-		sum += ACE_HIGH;
-	else if (aces > 0)
-		sum++;
+	if (aces && sum + ACE_HIGH - 1 <= BLACKJACK)
+		sum += ACE_HIGH - 1;
 	return sum;
 }
 
 int
 get_bet(Gambler *g) {
+	printf("Make a bet (balance: %d)\t", g->balance);
 	int bet;
 	do {
 		putchar('$');
-		scanf("%d", &bet);
+		if (!scanf("%d", &bet))
+			fputs("Failed to read integer.\n", stderr);
 		while(getchar() != '\n');
 	} while (bet <= 0 || bet > g->balance);
 	g->balance -= bet;
@@ -236,23 +209,41 @@ get_bet(Gambler *g) {
 
 void
 deal(Gambler *g) {
-	cards_size--;
-	g->hand[g->n_cards] = cards[cards_size];
+	g->hand[g->n_cards] = cards[--cards_size];
 	g->n_cards++;
 }
 
 void
-contest(Gambler *dealer, Gambler *player, int bet) {
-	printf("Dealer's turn:\n");
-	cards_size--;
-	dealer->hand[0] = cards[cards_size];
+prep_game(Gambler *dealer, Gambler *player) {
+	cards_size = DECK_SIZE;
+	shuffle_deck();
+	dealer->hand[0] = 0;
+	dealer->n_cards = 1;
+	deal(dealer);
+	player->n_cards = 0;
+	for (int i = 0; i < 2; i++)
+		deal(player);
+}
+
+void
+show_hands(Gambler *dealer, Gambler *player) {
+	puts("\nDealer's hand:");
 	print_cards(dealer->hand, dealer->n_cards);
-	while(hand_sum(dealer->hand, dealer->n_cards) < DEALER_MIN) {
+	puts("Player's hand:");
+	print_cards(player->hand, player->n_cards);
+}
+
+void
+contest(Gambler *dealer, Gambler *player, int bet) {
+	puts("\nDealer's turn:");
+	dealer->hand[0] = cards[--cards_size];
+	print_cards(dealer->hand, dealer->n_cards);
+	int player_sum = hand_sum(player->hand, player->n_cards);
+	int dealer_sum;
+	while((dealer_sum = hand_sum(dealer->hand, dealer->n_cards)) < DEALER_MIN && dealer_sum < player_sum) {
 		deal(dealer);
 		print_cards(dealer->hand, dealer->n_cards);
 	}
-	int dealer_sum = hand_sum(dealer->hand, dealer->n_cards);
-	int player_sum = hand_sum(player->hand, player->n_cards);
 	if (dealer_sum > BLACKJACK || dealer_sum < player_sum) {
 		printf("You win! (+$%d)\n", (int) (bet * PAYOUT - bet));
 		bet *= PAYOUT;
@@ -265,67 +256,45 @@ contest(Gambler *dealer, Gambler *player, int bet) {
 	}
 }
 
-
 void
-game(Gambler *dealer, Gambler *player) {
-	cards_size = DECK_SIZE;
-	shuffle_deck();
-	printf("Make a bet (balance: %d)\t", player->balance);
-	int bet = get_bet(player);
-	for(int i = 0; i < 2; i++) {
+play(Gambler *dealer, Gambler *player, int bet) {
+PLAY:
+	switch(action()) {
+	case 'H':
+	case 'h':
 		deal(player);
-	}
-	dealer->hand[0] = 0;
-	dealer->n_cards++;
-	deal(dealer);
-	printf("Dealer hand:\n");
-	print_cards(dealer->hand, dealer->n_cards);
-	printf("Player hand:\n");
-	print_cards(player->hand, player->n_cards);
-	int over = 0, fold = 0, stay = 0;
-	printf("Your turn:\n");
-	do {
-		switch(action()) {
-		case 'H':
-		case 'h':
-			deal(player);
-			print_cards(player->hand, player->n_cards);
-			over = hand_sum(player->hand, player->n_cards) > BLACKJACK;
-			break;
-		case 'S':
-		case 's':
-			stay = 1;
-			break;
-		case 'F':
-		case 'f':
-			fold = 1;
-			break;
-		default:
-			break;
-	}
-	} while (!over && !fold && !stay);
-	if (over) {
-		printf("You've gone bust! (-%d)\n", bet);
-	} else if (fold) {
+		print_cards(player->hand, player->n_cards);
+		if (hand_sum(player->hand, player->n_cards) <= BLACKJACK)
+			goto PLAY;
+		printf("You've lost this round. (-%d)\n", bet);
+		break;
+	case 'S':
+	case 's':
+		contest(dealer, player, bet);
+		break;
+	case 'F':
+	case 'f':
 		bet /= 2;
 		printf("You've surrendered this round. (-%d)\n", bet);
 		player->balance += bet;
-	} else if (stay) {
-		contest(dealer, player, bet);
-	} else {
-		puts("It appears an error has occurred, what a shame.");
+		break;
+	default:
+		goto PLAY;
+		break;
 	}
 }
 
 void
 blackjack() {
-	Gambler player = {.balance = 100, .n_cards = 0};
-	Gambler bot = {.balance = 100, .n_cards = 0};
-	while (player.balance > 0) {
-		game(&bot, &player);
-		player.n_cards = 0;
-		bot.n_cards = 0;
-	}
+	Gambler player = {.balance=100}, bot;
+	int bet;
+	do {
+		bet = get_bet(&player);
+		prep_game(&bot, &player);
+		show_hands(&bot, &player);
+		play(&bot, &player, bet);
+	} while (player.balance > 0);
+	puts("You've gone bust!");
 }
 
 int
@@ -352,7 +321,7 @@ main(int argc, char **argv) {
 				print_cards(&card, 1);
 				break;
 			case 'r':
-				card = randombytes_uniform(DECK_SIZE + 1);
+				card = randombytes_uniform(DECK_SIZE) + 1;
 				print_cards(&card, 1);
 				break;
 			case 'o':
