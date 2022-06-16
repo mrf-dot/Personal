@@ -19,8 +19,8 @@
 #define RED_ON_WHITE "\e[0;31m\e[47m"
 #define RESET "\e[0m"
 
-const char *ranks[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-const char *suites[] = {"♣","♦","♥", "♠"};
+char *ranks[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+char *suites[] = {"♣","♦","♥", "♠"};
 int cards[DECK_SIZE];
 int cards_size = DECK_SIZE;
 
@@ -278,6 +278,9 @@ PLAY:
 		printf("You've surrendered this round. (-%d)\n", bet);
 		player->balance += bet;
 		break;
+	case 'Q':
+	case 'q':
+		exit(0);
 	default:
 		goto PLAY;
 		break;
