@@ -81,7 +81,7 @@ help() {
 	puts("COLORS: Authored by Mitch Feigenbaum\n\
 Options:\n\
 \t-b\t\tPrint the original ANSI colors (8)\n\
-\t-c\t\tPrint the 8 Bit display colors (256\n\
+\t-c\t\tPrint the 8 Bit display colors (256)\n\
 \t-h\t\tPrint this help message\n\
 \t-l\t\tPrint each color on a separate line\n\
 \t-s\t\tShow text styling settings");
