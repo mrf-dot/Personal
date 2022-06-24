@@ -1,3 +1,4 @@
+/* Import libraries */
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,6 +6,7 @@
 #include <sodium.h> // Must be compiled with -lsodium as an argument
 #include <unistd.h>
 
+/* Define "Magic" constants */
 #define DECK_SIZE 52
 #define BLACKJACK 21
 #define ACE_HIGH 11
@@ -19,11 +21,13 @@
 #define RED_ON_WHITE "\e[0;31m\e[47m"
 #define RESET "\e[0m"
 
+/* Global variables used in multiple functions throughout the program */
 char *ranks[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 char *suites[] = {"♣","♦","♥", "♠"};
 int cards[DECK_SIZE];
 int cards_size = DECK_SIZE;
 
+/* Print one line of the generic back of a card */
 void
 print_unflipped() {
 	fputs(UNFLIPPED, stdout);

@@ -7,6 +7,23 @@
 #define COLORS	256
 #define RLEN	6
 #define MAGIC	4
+#define STYLES "\\[0m\t\033[0mReset/Normal\n\
+\\[1m\t\033[1mBold\033[0m\n\
+\\[2m\t\033[2mDim\033[0m\n\
+\\[3m\t\033[3mItalic\033[0m\n\
+\\[4m\t\033[4mUnderline\033[0m\n\
+\\[5m\t\033[5mSlow blink\033[0m\n\
+\\[6m\t\033[6mRapid blink\033[0m\n\
+\\[7m\t\033[7mReverse/Invert\033[0m\n\
+\\[8m\t\033[8mConceal\033[0m\n\
+\\[9m\t\033[9mStrike\033[0m\n"
+#define HELP "COLORS: Authored by Mitch Feigenbaum\n\
+Options:\n\
+\t-b\t\tPrint the original ANSI colors (8)\n\
+\t-c\t\tPrint the 8 Bit display colors (256)\n\
+\t-h\t\tPrint this help message\n\
+\t-l\t\tPrint each color on a separate line\n\
+\t-s\t\tShow text styling settings\n"
 
 void
 longfg(int colors) {
@@ -62,42 +79,17 @@ colors(int colors, int verbose) {
 	}
 }
 
-void
-styles() {
-	puts("\\[0m\t\033[0mReset/Normal\n\
-\\[1m\t\033[1mBold\033[0m\n\
-\\[2m\t\033[2mDim\033[0m\n\
-\\[3m\t\033[3mItalic\033[0m\n\
-\\[4m\t\033[4mUnderline\033[0m\n\
-\\[5m\t\033[5mSlow blink\033[0m\n\
-\\[6m\t\033[6mRapid blink\033[0m\n\
-\\[7m\t\033[7mReverse/Invert\033[0m\n\
-\\[8m\t\033[8mConceal\033[0m\n\
-\\[9m\t\033[9mStrike\033[0m");
-}
-
-void
-help() {
-	puts("COLORS: Authored by Mitch Feigenbaum\n\
-Options:\n\
-\t-b\t\tPrint the original ANSI colors (8)\n\
-\t-c\t\tPrint the 8 Bit display colors (256)\n\
-\t-h\t\tPrint this help message\n\
-\t-l\t\tPrint each color on a separate line\n\
-\t-s\t\tShow text styling settings");
-}
-
 int
 main(int argc, char **argv) {
 	if (argc == 1) {
-		help();
+		fputs(HELP, stderr);
 		return 1;
 	}
 	int c;
 	while ((c = getopt(argc, argv, "hbcls")) != -1)
 		switch(c) {
 			case 'h':
-				help();
+				fputs(HELP, stdout);
 				break;
 			case 'b':
 				colors(ANSI, 1);
@@ -109,7 +101,7 @@ main(int argc, char **argv) {
 				colors(COLORS, 1);
 				break;
 			case 's':
-				styles();
+				fputs(STYLES, stdout);
 				break;
 			case '?':
 			default:
