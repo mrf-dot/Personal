@@ -14,8 +14,7 @@ main() {
 	"	char *l[] = {",
 	"	",
 	"	};",
-	"	for (int i = 0; i < 7; i++)",
-	"		puts(l[i]);",
+	"	for (int i = 0; i < 7; puts(l[i++]));",
 	"	for (int i = 0; i < sizeof(l) / sizeof(l[0]); i++) {",
 	"		fputs(l[7], stdout);",
 	"		putchar(q);",
@@ -24,13 +23,11 @@ main() {
 	"		putchar(',');",
 	"		putchar(n);",
 	"	}",
-	"	for (int i = 8; i < sizeof(l) / sizeof(l[0]); i++)",
-	"		puts(l[i]);",
+	"	for (int i = 8; i < sizeof(l) / sizeof(l[0]); puts(l[i++]));",
 	"}",
 	"",
 	};
-	for (int i = 0; i < 7; i++)
-		puts(l[i]);
+	for (int i = 0; i < 7; puts(l[i++]));
 	for (int i = 0; i < sizeof(l) / sizeof(l[0]); i++) {
 		fputs(l[7], stdout);
 		putchar(q);
@@ -39,7 +36,6 @@ main() {
 		putchar(',');
 		putchar(n);
 	}
-	for (int i = 8; i < sizeof(l) / sizeof(l[0]); i++)
-		puts(l[i]);
+	for (int i = 8; i < sizeof(l) / sizeof(l[0]); puts(l[i++]));
 }
 
