@@ -27,21 +27,7 @@
 #define LB2KG(X) ((X) / 2.205)
 #define OLDBMI(KG, M) ((KG) / pow((M), 2))
 #define NEWBMI(KG, M) (1.3 * ((KG) / pow((M), 2.5)))
-#define INTERPRET(BMI) ((BMI) >= 40\
-		? "Obese (III)"\
-		: (BMI) >= 35\
-		? "Obese (II)"\
-		: (BMI) >= 30\
-		? "Obese (I)"\
-		: (BMI) >= 25\
-		? "Overweight"\
-		: (BMI) >= 18.5\
-		? "Normal"\
-		: (BMI) >= 17\
-		? "Slightly Underweight"\
-		: (BMI) >= 16\
-		? "Underweight"\
-		: "Severely Underweight")
+#define INTERPRET(BMI) ((BMI) >= 40 ? "Obese (III)" : (BMI) >= 35 ? "Obese (II)" : (BMI) >= 30 ? "Obese (I)" : (BMI) >= 25 ? "Overweight" : (BMI) >= 18.5 ? "Normal" : (BMI) >= 17 ? "Slightly Underweight" : (BMI) >= 16 ? "Underweight" : "Severely Underweight")
 #define HELP "BMI -- Authored by Mitch Feigenbaum\n\
 Options:\n\
 \t-k\t\tMass in kilograms\n\

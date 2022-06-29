@@ -33,11 +33,11 @@ int cardssize = DECKSIZE;
 typedef struct {
 	int hand[BLACKJACK];
 	int balance;
-	int n_cards;
+	int ncards;
 } Gambler;
 
 #define COLOR(SUITE) (((SUITE) == 1 || (SUITE) == 2) ? REDONWHITE : BLACKONWHITE)
-#define DEAL(G) (G->hand[G->n_cards++] = cards[--cardssize])
+#define DEAL(G) (G->hand[G->ncards++] = cards[--cardssize])
 #define FILL() for (int i = 0; i < DECKSIZE; cards[i-1] = ++i)
 #define GETRANK(POS) (((POS) - 1) % (sizeof(RANKS) / sizeof(RANKS[0])))
 #define GETSUITE(POS) ((int) ((float) ((POS) - 1) / DECKSIZE * (sizeof(SUITES) / sizeof(SUITES[0]))))
@@ -123,11 +123,6 @@ shuffle_deck() {
 	}
 }
 
-void
-print_deck() {
-	print_cards(cards, DECKSIZE);
-}
-
 char
 action() {
 	printf("[H]it\t[S]tay\t[F]old\t[Q]uit\t");
@@ -165,9 +160,9 @@ prep_game(Gambler *dealer, Gambler *player) {
 	cardssize = DECKSIZE;
 	shuffle_deck();
 	dealer->hand[0] = 0;
-	dealer->n_cards = 1;
+	dealer->ncards = 1;
 	DEAL(dealer);
-	player->n_cards = 0;
+	player->ncards = 0;
 	for (int i = 0; i < 2; i++)
 		DEAL(player);
 }
@@ -175,21 +170,21 @@ prep_game(Gambler *dealer, Gambler *player) {
 void
 show_hands(Gambler *dealer, Gambler *player) {
 	puts("\nDealer's hand:");
-	print_cards(dealer->hand, dealer->n_cards);
+	print_cards(dealer->hand, dealer->ncards);
 	puts("Player's hand:");
-	print_cards(player->hand, player->n_cards);
+	print_cards(player->hand, player->ncards);
 }
 
 void
 contest(Gambler *dealer, Gambler *player, int bet) {
 	puts("\nDealer's turn:");
 	dealer->hand[0] = cards[--cardssize];
-	print_cards(dealer->hand, dealer->n_cards);
-	int player_sum = hand_sum(player->hand, player->n_cards);
+	print_cards(dealer->hand, dealer->ncards);
+	int player_sum = hand_sum(player->hand, player->ncards);
 	int dealer_sum;
-	while((dealer_sum = hand_sum(dealer->hand, dealer->n_cards)) < DEALERMIN && dealer_sum < player_sum) {
+	while((dealer_sum = hand_sum(dealer->hand, dealer->ncards)) < DEALERMIN && dealer_sum < player_sum) {
 		DEAL(dealer);
-		print_cards(dealer->hand, dealer->n_cards);
+		print_cards(dealer->hand, dealer->ncards);
 	}
 	if (dealer_sum > BLACKJACK || dealer_sum < player_sum) {
 		printf("You win! (+$%d)\n", (int) (bet * PAYOUT - bet));
@@ -209,8 +204,8 @@ PLAY:
 	switch(action()) {
 		case 'H': case 'h':
 			DEAL(player);
-			print_cards(player->hand, player->n_cards);
-			if (hand_sum(player->hand, player->n_cards) <= BLACKJACK)
+			print_cards(player->hand, player->ncards);
+			if (hand_sum(player->hand, player->ncards) <= BLACKJACK)
 				goto PLAY;
 			printf("You've lost this round. (-%d)\n", bet);
 			break;
@@ -271,11 +266,11 @@ main(int argc, char **argv) {
 				break;
 			case 'o':
 				FILL();
-				print_deck();
+				print_cards(cards, DECKSIZE);
 				break;
 			case 's':
 				shuffle_deck();
-				print_deck();
+				print_cards(cards, DECKSIZE);
 				break;
 			case 'h':
 				fputs(HELP, stdout);

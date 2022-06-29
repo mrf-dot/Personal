@@ -3,22 +3,22 @@
 int
 makewords(char *file) {
 	FILE *f;
-	if (f = fopen(file, "r")) {
-		for (int i = getc(f); i != EOF; i = getc(f))
-			if (i == ' ')
-				putchar('\n');
-			else
-				putchar(i);
-		return 0;
-	}
-	else
+	char c;
+	if (!(f = fopen(file, "r")))
 		return 1;
+	while ((c = getc(f)) != EOF)
+		putchar(c == ' ' || c == '\t' ? '\n' : c);
+	return 0;
 }
 
 int
 main(int argc, char **argv) {
 	if (argc == 1)
 		return 1;
-	return makewords(argv[1]);
+	for (int i = 1; i < argc; i++)
+		if (makewords(argv[i]))
+			return 1;
+	return 0;
+
 }
 

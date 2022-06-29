@@ -188,6 +188,8 @@
 /* 	Default {help} */
 /* } */
 #include <mpv/client.h>
+#include <stdio.h>
+#include <unistd.h>
 
 #define YTAPIKEY "AIzaSyAr9WbWmgDQ4EkMBS4AsWj9ikkKODNZs78"
 mpv_handle *ctx;

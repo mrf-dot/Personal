@@ -2,19 +2,25 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-#include "sortlist.h"
+
+#define LIST_SIZE 1000000
+#define RANDOM 1
+#define BUBBLESORT 0
+#define QUICKSORT 1
+#define RAND_VERBOSE 0
+#define SORT_VERBOSE 0
+#define SWAP_VERBOSE 0
+#define LIST_VERBOSE 0
+#define MILLISECONDS 0
+#define YELLOW "\033[0;43m"
+#define RED "\033[0;41m"
+#define GREEN "\033[0;42m"
+#define NONE "\033[0m"
 
 struct Operations {
 	int swaps;
 	int comps;
 } operations = {0, 0};
-
-const struct Colors {
-	char *yellow;
-	char *red;
-	char *green;
-	char *none;
-} colors = {"\033[0;43m", "\033[0;41m", "\033[0;42m", "\033[0m"};
 
 int current_random = 0;
 int verbose;
@@ -32,7 +38,7 @@ prclist(int i1, int i2, char *c1, char *c2) {
 		printf("%s%d%s ",
 				i == i2 ? c2 : i == i1 ? c1 : "",
 				list[i],
-				colors.none);
+				NONE);
 	}
 	putchar('\n');
 
@@ -49,13 +55,13 @@ disp(int i1, int i2, char *c1, char *c2, int swap) {
 void
 disp_swap(int i1, int i2) {
 	operations.swaps++;
-	disp(i1, i2, colors.green, colors.green, 1);
+	disp(i1, i2, GREEN, GREEN, 1);
 }
 
 void
 disp_comp(int i1, int i2) {
 	operations.comps++;
-	disp(i1, i2, colors.yellow, colors.red, 0);
+	disp(i1, i2, YELLOW, RED, 0);
 }
 
 void
@@ -65,23 +71,6 @@ swap(int i1, int i2) {
 	list[i2] = tmp;
 	disp_swap(i1, i2);
 }
-
-#if BUBBLESORT
-void
-bubblesort() {
-	int ordered = 1;
-	do {
-		ordered = 1;
-		for (int i = 0; i < LIST_SIZE - 1; i++) {
-			disp_comp(i, i + 1);
-			if (list[i] > list[i + 1]) {
-				swap(i, i + 1);
-				ordered = 0;
-			}
-		}
-	} while (!ordered);
-}
-#endif
 
 /*
  * Based on the Hoare partition scheme of quicksort
@@ -158,9 +147,20 @@ sort() {
 	operations.swaps = 0;
 	printf("Begin Sorting.\n");
 #if BUBBLESORT
-		bubblesort();
-#else
+	int ordered = 1;
+	do {
+		ordered = 1;
+		for (int i = 0; i < LIST_SIZE - 1; i++) {
+			disp_comp(i, i + 1);
+			if (list[i] > list[i + 1]) {
+				swap(i, i + 1);
+				ordered = 0;
+			}
+		}
+	} while (!ordered);
+#elif QUICKSORT
 		quicksort(0, LIST_SIZE - 1);
+}
 #endif
 #if LIST_VERBOSE
 	printf("Sorted List:\t");
