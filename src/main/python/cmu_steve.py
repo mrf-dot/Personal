@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from cmu_graphics import *
 # index to keep track of the armor level
 app.level = 0

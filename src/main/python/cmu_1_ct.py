@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from cmu_graphics import *
 """This program allows for the user to create a pattern of columns and rows of colors"""
 def main():

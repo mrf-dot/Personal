@@ -1,16 +1,21 @@
+#include <sodium.h> // Must be compiled with -lsodium as an argument
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sodium.h> // Must be compiled with -lsodium as an argument
 #include <unistd.h>
 
 #define ACEHIGH 11
 #define BLACKJACK 21
 #define BLACKONWHITE "\e[0;30m\e[47m"
 #define CARDHEIGHT 7
+#define COLOR(SUITE) (((SUITE) == 1 || (SUITE) == 2) ? REDONWHITE : BLACKONWHITE)
 #define DEALERMIN 16
+#define DEAL(G) (G->hand[G->ncards++] = cards[--cardssize])
 #define DECKSIZE 52
 #define FACEVAL 10
+#define FILL() for (int i = 0; i < DECKSIZE; i++) cards[i] = i + 1
+#define GETRANK(POS) (((POS) - 1) % (sizeof(RANKS) / sizeof(RANKS[0])))
+#define GETSUITE(POS) ((int) ((float) ((POS) - 1) / DECKSIZE * (sizeof(SUITES) / sizeof(SUITES[0]))))
 #define HELP "CARDS -- Authored by Mitch Feigenbaum\n\
 Options:\n\
 \t-b\t\tPlay an interactive round of Blackjack\n\
@@ -23,8 +28,10 @@ Options:\n\
 #define PAYOUT 1.5
 #define REDONWHITE "\e[0;31m\e[47m"
 #define RESET "\e[0m"
+#define SPACES(RANK) (((RANK) == -1) ?  "           " : !strcmp(RANKS[(RANK)], "10") ? "         " : "          ")
 #define UNFLIPPED "\e[0;31m\e[44mXXXXXXXXXX\e[0m\t"
 #define WHITE "\e[0;47m"
+
 
 const char *RANKS[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 const char *SUITES[] = {"♣","♦","♥", "♠"};
@@ -35,13 +42,6 @@ typedef struct {
 	int balance;
 	int ncards;
 } Gambler;
-
-#define COLOR(SUITE) (((SUITE) == 1 || (SUITE) == 2) ? REDONWHITE : BLACKONWHITE)
-#define DEAL(G) (G->hand[G->ncards++] = cards[--cardssize])
-#define FILL() for (int i = 0; i < DECKSIZE; cards[i-1] = ++i)
-#define GETRANK(POS) (((POS) - 1) % (sizeof(RANKS) / sizeof(RANKS[0])))
-#define GETSUITE(POS) ((int) ((float) ((POS) - 1) / DECKSIZE * (sizeof(SUITES) / sizeof(SUITES[0]))))
-#define SPACES(RANK) (((RANK) == -1) ?  "           " : !strcmp(RANKS[(RANK)], "10") ? "         " : "          ")
 
 void
 print_footer(int card) {
@@ -106,7 +106,8 @@ print_hand(int *hand, int lo, int to) {
 void
 print_cards(int *hand, int size) {
 	int leftover = size % MAXHAND;
-	for (int i = 0; i < size - leftover; print_hand(hand, i - MAXHAND, i += MAXHAND));
+	for (int i = 0; i < size - leftover; i += MAXHAND)
+		print_hand(hand, i, i + MAXHAND);
 	if (leftover > 0)
 		print_hand(hand, size - leftover, size);
 }
@@ -182,7 +183,7 @@ contest(Gambler *dealer, Gambler *player, int bet) {
 	print_cards(dealer->hand, dealer->ncards);
 	int player_sum = hand_sum(player->hand, player->ncards);
 	int dealer_sum;
-	while((dealer_sum = hand_sum(dealer->hand, dealer->ncards)) < DEALERMIN && dealer_sum < player_sum) {
+	while ((dealer_sum = hand_sum(dealer->hand, dealer->ncards)) < DEALERMIN && dealer_sum < player_sum) {
 		DEAL(dealer);
 		print_cards(dealer->hand, dealer->ncards);
 	}
@@ -201,26 +202,26 @@ contest(Gambler *dealer, Gambler *player, int bet) {
 void
 play(Gambler *dealer, Gambler *player, int bet) {
 PLAY:
-	switch(action()) {
-		case 'H': case 'h':
-			DEAL(player);
-			print_cards(player->hand, player->ncards);
-			if (hand_sum(player->hand, player->ncards) <= BLACKJACK)
-				goto PLAY;
-			printf("You've lost this round. (-%d)\n", bet);
-			break;
-		case 'S': case 's':
-			contest(dealer, player, bet);
-			break;
-		case 'F': case 'f':
-			bet /= 2;
-			printf("You've surrendered this round. (-%d)\n", bet);
-			player->balance += bet;
-			break;
-		case 'Q': case 'q':
-			exit(0);
-		default:
+	switch (action()) {
+	case 'H': case 'h':
+		DEAL(player);
+		print_cards(player->hand, player->ncards);
+		if (hand_sum(player->hand, player->ncards) <= BLACKJACK)
 			goto PLAY;
+		printf("You've lost this round. (-%d)\n", bet);
+		break;
+	case 'S': case 's':
+		contest(dealer, player, bet);
+		break;
+	case 'F': case 'f':
+		bet /= 2;
+		printf("You've surrendered this round. (-%d)\n", bet);
+		player->balance += bet;
+		break;
+	case 'Q': case 'q':
+		exit(0);
+	default:
+		goto PLAY;
 	}
 }
 
@@ -249,36 +250,36 @@ main(int argc, char **argv) {
 	int card;
 	while ((c = getopt(argc, argv, "bc:rosh")) != -1)
 		switch(c) {
-			case 'b':
-				blackjack();
-				break;
-			case 'c':
-				card = abs(atoi(optarg));
-				if (card > DECKSIZE) {
-					fprintf(stderr, "%s: option -c requires an argument within the range of a standard deck (1-52).\n", argv[0]);
-					return 1;
-				}
-				print_cards(&card, 1);
-				break;
-			case 'r':
-				card = randombytes_uniform(DECKSIZE) + 1;
-				print_cards(&card, 1);
-				break;
-			case 'o':
-				FILL();
-				print_cards(cards, DECKSIZE);
-				break;
-			case 's':
-				shuffle_deck();
-				print_cards(cards, DECKSIZE);
-				break;
-			case 'h':
-				fputs(HELP, stdout);
-				break;
-			case '?':
+		case 'b':
+			blackjack();
+			break;
+		case 'c':
+			card = abs(atoi(optarg));
+			if (card > DECKSIZE) {
+				fprintf(stderr, "%s: option -c requires an argument within the range of a standard deck (1-52).\n", argv[0]);
 				return 1;
-			default:
-				abort();
+			}
+			print_cards(&card, 1);
+			break;
+		case 'r':
+			card = randombytes_uniform(DECKSIZE) + 1;
+			print_cards(&card, 1);
+			break;
+		case 'o':
+			FILL();
+			print_cards(cards, DECKSIZE);
+			break;
+		case 's':
+			shuffle_deck();
+			print_cards(cards, DECKSIZE);
+			break;
+		case 'h':
+			fputs(HELP, stdout);
+			break;
+		case '?':
+			return 1;
+		default:
+			abort();
 		}
 	for (int i = optind; i < argc; fprintf(stderr, "non option argument: %s\n", argv[i++]));
 	return 0;

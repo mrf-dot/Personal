@@ -371,7 +371,6 @@ public class SortList {
 		return sb.toString();
 	}
 
-	/** */
 	private String arrayToString(int index1, int index2, String color1, String color2) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < list.length; i++)
@@ -446,5 +445,13 @@ public class SortList {
 	private void clearStats() {
 		operations = 0;
 		swaps = 0;
+	}
+
+	public static void main(String[] args) {
+		// int SIZE, boolean randVerbose, boolean sortVerbose, boolean swapVerbose, int milliseconds
+		SortList sl1 = new SortList(10, true, true, true, 100);
+		System.out.println(sl1);
+		// bubble, insert, mitch, quick
+		sl1.fullSort("insert");
 	}
 }

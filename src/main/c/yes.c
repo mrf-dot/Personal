@@ -2,11 +2,10 @@
 #include <stdio.h>
 
 int
-main(int argc, char *argv[]) {
-	const char *output = argv[1] ? argv[1] : "y";
-	while (1) {
-		printf("%s\n", output);
-	}
+main(int argc, char **argv) {
+	const char *s = argv[1] ? argv[1] : "y";
+	while (1)
+		puts(s);
 	return 0;
 }
 
