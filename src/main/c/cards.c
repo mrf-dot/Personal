@@ -1,7 +1,7 @@
-#include <sodium.h> // Must be compiled with -lsodium as an argument
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/random.h>
 #include <unistd.h>
 
 #define ACEHIGH 11
@@ -114,10 +114,10 @@ print_cards(int *hand, int size) {
 
 void
 shuffle_deck() {
-	unsigned int i, j, tmp;
+	unsigned long i, j, tmp;
 	/* Fischer-Yates Shuffle */
 	for (i = DECKSIZE - 1; i > 0; i--) {
-		j = randombytes_uniform(i+1);
+		j = random() % (i+1);
 		tmp = cards[i];
 		cards[i] = cards[j];
 		cards[j] = tmp;
@@ -245,7 +245,12 @@ main(int argc, char **argv) {
 		return 1;
 	}
 	FILL();
-	randombytes_stir();
+	unsigned int seed;
+	if (getrandom(&seed, sizeof seed, GRND_NONBLOCK) == -1) {
+		fputs("Random number generation failure.\n", stderr);
+		return 1;
+	}
+	srandom(seed);
 	int c;
 	int card;
 	while ((c = getopt(argc, argv, "bc:rosh")) != -1)
@@ -262,7 +267,7 @@ main(int argc, char **argv) {
 			print_cards(&card, 1);
 			break;
 		case 'r':
-			card = randombytes_uniform(DECKSIZE) + 1;
+			card = random() % DECKSIZE + 1;
 			print_cards(&card, 1);
 			break;
 		case 'o':

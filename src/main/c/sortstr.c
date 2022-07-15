@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include <sodium.h>
+#include <sys/random.h>
 
 int swaps = 0, comps = 0;
 
@@ -40,7 +41,7 @@ strsort(char **a, int lo, int to) {
 
 void
 shuffle(char **a, int sz) {
-	for (int i = sz - 1; i > 0; swap(a, i--, randombytes_uniform(i+1)));
+	for (int i = sz - 1; i > 0; swap(a, i--, random() % (i+1)));
 }
 
 void
@@ -50,6 +51,12 @@ prlist(char **a, int sz) {
 
 int
 main() {
+	unsigned int seed;
+	if (getrandom(&seed, sizeof seed, GRND_NONBLOCK) == -1) {
+		fputs("Randomness could not be obtained.\n", stderr);
+		return 1;
+	}
+	srandom(seed);
 	char *dict[] = { "alfa", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india", "juliett", "kilo", "lima", "mike", "november", "oscar", "papa", "quebec", "romeo", "sierra", "tango", "uniform", "victor", "whiskey", "x-ray", "yankee", "zulu" };
 	int sz = sizeof(dict) / sizeof(*dict);
 	puts("Before Sorting:\n");
