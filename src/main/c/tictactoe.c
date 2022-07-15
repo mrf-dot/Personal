@@ -27,8 +27,45 @@ showboard() {
 	putchar('\n');
 }
 
-void
-checkwin();
+int
+winrow(char sign) {
+	int i, j, matches;
+	for (i = 0; i < DIMENSION; i++) {
+		matches = 0;
+		for (j = 0; j < DIMENSION; j++)
+			if (board[i][j] == sign)
+				matches++;
+		if (matches == DIMENSION - 1)
+			return 1;
+	}
+	return 0;
+}
+
+int
+wincol(char sign);
+
+int
+windiag(char sign) {
+	int i, matches;
+	matches = 0;
+	for (i = 0; i < DIMENSION; i++)
+		if (board[i][i] == sign)
+			matches++;
+	if (matches == DIMENSION - 1)
+		return 1;
+	matches = 0;
+	for (i = 0; i < DIMENSION; i++)
+		if (board[i][DIMENSION - 1 - i] == sign)
+			matches++;
+	if (matches == DIMENSION - 1)
+		return 1;
+	return 0;
+}
+
+int
+iswin(char sign) {
+	return winrow(sign) || wincol(sign) || windiag(sign);
+}
 
 void
 game();

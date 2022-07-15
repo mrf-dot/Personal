@@ -1,16 +1,6 @@
 #include <stdio.h>
 
-#define STRING char *
-#define IF if(
-#define THEN ) {
-#define ELSE } else {
-#define FI ;}
-#define WHILE while (
-#define DO ) {
-#define OD ;}
-#define INT int
-#define BEGIN {
-#define END }
+#include "algol.h"
 
 INT compare(s1, s2)
 	STRING s1;
@@ -18,14 +8,15 @@ INT compare(s1, s2)
 BEGIN
 	WHILE *s1++ == *s2
 	DO
-		IF *s2++ == 0
-			THEN return(0);
+		IF *s2++ == 0 THEN
+			return(0);
 		FI
 	OD
 END
 
 INT main()
 BEGIN
-	printf("%d\n", compare("A STRING", "A STRING"));
+	STRING s = "A STRING";
+	printf("%d\n", compare(s, "Another STRING"));
 END
 
