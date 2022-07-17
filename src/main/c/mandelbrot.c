@@ -4,7 +4,7 @@
 int
 main() {
 	char *p = malloc(30000);
-	// A mandelbrot set fractal viewer in C
+	// A mandelbrot set fractal viewer in brainfuck written by Erik Bosman
 	++*p;
 	++*p;
 	++*p;
