@@ -1,7 +1,6 @@
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-import java.util.Unic
 
 public class ConvertUnicode {
 	public static void main(String[] args) {

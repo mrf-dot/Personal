@@ -2,8 +2,10 @@
 #include <stdio.h>
 
 int
-main(int argc, char **argv) {
-	const char *s = argv[1] ? argv[1] : "y";
+main(argc, argv)
+	int argc;
+	char **argv; {
+	const char *s = *(argv+1) ? *(argv+1) : "y";
 	while (1)
 		puts(s);
 	return 0;

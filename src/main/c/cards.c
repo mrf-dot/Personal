@@ -1,7 +1,7 @@
+#include "rnd.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/random.h>
 #include <unistd.h>
 
 #define ACEHIGH 11
@@ -112,18 +112,6 @@ print_cards(int *hand, int size) {
 		print_hand(hand, size - leftover, size);
 }
 
-void
-shuffle_deck() {
-	unsigned long i, j, tmp;
-	/* Fischer-Yates Shuffle */
-	for (i = DECKSIZE - 1; i > 0; i--) {
-		j = random() % (i+1);
-		tmp = cards[i];
-		cards[i] = cards[j];
-		cards[j] = tmp;
-	}
-}
-
 char
 action() {
 	printf("[H]it\t[S]tay\t[F]old\t[Q]uit\t");
@@ -159,7 +147,7 @@ get_bet(Gambler *g) {
 void
 prep_game(Gambler *dealer, Gambler *player) {
 	cardssize = DECKSIZE;
-	shuffle_deck();
+	shuffle(cards, DECKSIZE);
 	dealer->hand[0] = 0;
 	dealer->ncards = 1;
 	DEAL(dealer);
@@ -244,13 +232,8 @@ main(int argc, char **argv) {
 		fputs(HELP, stderr);
 		return 1;
 	}
+	srnd();
 	FILL();
-	unsigned int seed;
-	if (getrandom(&seed, sizeof seed, GRND_NONBLOCK) == -1) {
-		fputs("Random number generation failure.\n", stderr);
-		return 1;
-	}
-	srandom(seed);
 	int c;
 	int card;
 	while ((c = getopt(argc, argv, "bc:rosh")) != -1)
@@ -267,7 +250,7 @@ main(int argc, char **argv) {
 			print_cards(&card, 1);
 			break;
 		case 'r':
-			card = random() % DECKSIZE + 1;
+			card = rndint(1, DECKSIZE + 1);
 			print_cards(&card, 1);
 			break;
 		case 'o':
@@ -275,16 +258,14 @@ main(int argc, char **argv) {
 			print_cards(cards, DECKSIZE);
 			break;
 		case 's':
-			shuffle_deck();
+			shuffle(cards, DECKSIZE);
 			print_cards(cards, DECKSIZE);
 			break;
 		case 'h':
 			fputs(HELP, stdout);
 			break;
-		case '?':
-			return 1;
 		default:
-			abort();
+			return 1;
 		}
 	for (int i = optind; i < argc; fprintf(stderr, "non option argument: %s\n", argv[i++]));
 	return 0;
