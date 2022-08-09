@@ -1,22 +1,27 @@
 #include <stdio.h>
-#include <string.h>
 
-char get_string[50]() {
-        printf("Enter a string: ");
-        char str[50];
-        scanf("%s", &str);
-        return str;
+void
+swap(char *s1, char *s2) {
+	char tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
 }
 
-void permute(char str[50]) {
-        printf("%lu\n", strlen(str));
-        for (int i = 0; i < strlen(str); i++) {
-                printf("%c\n", str[i]);
-        }
+void
+permute(char *s, int lo) {
+	if (*(s+lo) == '\0')
+		puts(s);
+	else for (int i = lo; *(s+i) != '\0'; i++) {
+		swap(s, s+i);
+		permute(s, lo+1);
+		swap(s, s+i);
+	}
+	putchar('\0');
 }
 
-int main() {
-        permute(get_string());
-        return 0;
+int
+main(int argc, char **argv) {
+	char s[] = "ABC";
+	permute(s, 0);
 }
 
