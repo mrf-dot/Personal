@@ -16,7 +16,6 @@ permute(char *s, int lo) {
 		permute(s, lo+1);
 		swap(s, s+i);
 	}
-	putchar('\0');
 }
 
 int

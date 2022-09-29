@@ -37,11 +37,11 @@ const char *RANKS[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "
 const char *SUITES[] = {"♣","♦","♥", "♠"};
 int cards[DECKSIZE];
 int cardssize = DECKSIZE;
-typedef struct {
+struct Gambler {
 	int hand[BLACKJACK];
 	int balance;
 	int ncards;
-} Gambler;
+};
 
 void
 print_footer(int card) {
@@ -131,7 +131,7 @@ hand_sum(int *hand, int size) {
 }
 
 int
-get_bet(Gambler *g) {
+get_bet(struct Gambler *g) {
 	printf("Make a bet (balance: %d)\t", g->balance);
 	int bet;
 	do {
@@ -145,7 +145,7 @@ get_bet(Gambler *g) {
 }
 
 void
-prep_game(Gambler *dealer, Gambler *player) {
+prep_game(struct Gambler *dealer, struct Gambler *player) {
 	cardssize = DECKSIZE;
 	shuffle(cards, DECKSIZE);
 	dealer->hand[0] = 0;
@@ -157,7 +157,7 @@ prep_game(Gambler *dealer, Gambler *player) {
 }
 
 void
-show_hands(Gambler *dealer, Gambler *player) {
+show_hands(struct Gambler *dealer, struct Gambler *player) {
 	puts("\nDealer's hand:");
 	print_cards(dealer->hand, dealer->ncards);
 	puts("Player's hand:");
@@ -165,7 +165,7 @@ show_hands(Gambler *dealer, Gambler *player) {
 }
 
 void
-contest(Gambler *dealer, Gambler *player, int bet) {
+contest(struct Gambler *dealer, struct Gambler *player, int bet) {
 	puts("\nDealer's turn:");
 	dealer->hand[0] = cards[--cardssize];
 	print_cards(dealer->hand, dealer->ncards);
@@ -188,7 +188,7 @@ contest(Gambler *dealer, Gambler *player, int bet) {
 }
 
 void
-play(Gambler *dealer, Gambler *player, int bet) {
+play(struct Gambler *dealer, struct Gambler *player, int bet) {
 PLAY:
 	switch (action()) {
 	case 'H': case 'h':
@@ -215,7 +215,8 @@ PLAY:
 
 void
 blackjack() {
-	Gambler player = {.balance=100}, bot;
+	struct Gambler player, bot;
+	player.balance = 100;
 	int bet;
 	do {
 		bet = get_bet(&player);

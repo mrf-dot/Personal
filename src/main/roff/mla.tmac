@@ -1,0 +1,100 @@
+.\" Modified by Mitch Feigenbaum
+.\" Copyright © 2006-2007 Benjamin T. D. Newman
+.\" troff (not only groff) macro pacakge for MLA
+.de RT \" return to defaults
+.br
+.fi
+.ft R
+.ps 12
+.ls 2
+.in 0
+.na
+.nh
+..
+.de NP \" header
+'sp |0.5i
+'tl '''\\*(LN %'
+'sp |1i
+..
+.de FO \" footer
+'bp
+..
+.de ML \" main macro
+.pl 11i
+.ds FN \\$1
+.ds LN \\$2
+.ds TE \\$3
+.ds CN \\$4
+.ds DA \\$5
+.ds TI \\$6
+.ps 12
+.vs 14
+.wh 0 NP
+.wh -1i FO
+.RT
+ \" .sp |0
+.nf
+.sp |1i
+\\*(FN \\*(LN
+\\*(TE
+\\*(CN
+\\*(DA
+.ce
+\\*(TI
+..
+.de PP \" Paragraph
+.RT
+.ti 0.5i
+..
+.de WC \" Works cited page
+.bp
+.ce
+Works Cited
+..
+.de CI \" Citation on works cited page, probably the wrong term
+.in 0.5i
+.ti -0.5i
+..
+.de QS \" Begin a block quote
+.br
+.in 1i
+..
+.de QE \" End a block quote
+.br
+.in 0
+..
+.\" Everything from this point forward has been done by Mitch
+.de UL \" Underline
+\Z'\\$1'\v'.25m'\D'l \w'\\$1'u 0'\v'-.25m'\\$2
+..
+.\" Quotes and dashes
+.ds Q \(lq
+.ds U \(rq
+.ds - \(em
+.\" Parts of a citation
+.de A \" Author
+.if \\n(.$>=3 \\$1, et al.
+.if \\n(.$==2 \\$1, and \\$2.
+.if \\n(.$==1 \\$1.
+..
+.de SW \" Section of a work
+\(lq\\$*\(rq
+..
+.de LW \" Large work
+\f[I]\\$*\f[],
+..
+.de D \" Description (ie date, publisher, etc)
+\\$*,
+..
+.de LC \" Location
+\\$*.
+..
+.de HL \" Hyperlink
+.if \\n(.$==2 \{\
+.	pdfhref W \\$1.
+Accessed \\$2.
+.\}
+.if \\n(.$==1 \{\
+.	pdfhref W \\$1.
+.\}
+..

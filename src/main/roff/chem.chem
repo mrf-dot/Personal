@@ -1,0 +1,2739 @@
+atp.chem:
+.cstart
+
+# Example file for 'chem':
+#   ATP or C10_H16_N5_O13_P3 or
+#   [[[5-(6-aminopurin-9-yl)-3,4-dihydroxy-oxolan-2-yl]methoxy-hydroxy-
+#     phosphoryl]oxy-hydroxy-phosphoryl]oxyphosphonic acid
+
+# Found at http://www.chemindustry.com/apps/chemicals.
+
+# Source file position: <groff-source>/contrib/chem/example/atp.chem
+# Installed position: <prefix>/share/doc/groff/example/chem/atp.chem
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+# Written by Bernd Warken <groff-bernd.warken-72@web.de>.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+R1:	ring5 pointing left double 1,2 3,4 put N at 2 put N at 5
+B:	benzene put N at 2 with .V6 at R1.V3 with .V5 at R1.V4
+	bond up ; NH2
+	backbond 170 length .7 from R1.V5
+R2:	ring5 pointing down with .V2 put O at 1
+	bond down at R2.V2 ; H
+	bond down length .1 at R2.V3 ; H
+	bond up length .1 at R2.V3 ; OH
+	bond down length .1 at R2.V4 ; H
+	bond up length .1 at R2.V4 ; OH
+	frontbond 70 at R2.V5
+	bond 110 ; O
+	bond right ; P
+	doublebond up ; O
+	bond down from P ; OH
+	bond right from P ; O
+	bond right ; P
+	doublebond up ; O
+	bond down from P ; OH
+	bond right from P ; O
+	bond right ; P
+	doublebond up ; O
+	bond down from P ; OH
+	bond right from P ; OH
+
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+cholesterin.chem:
+.cstart
+
+# Example file for 'chem':
+#   Cholesterin or C27_H46O or
+#   10,13-dimethyl-17-(6-methylheptan-2-yl)-2,3,4,5,6,9,11,12,14,15,16,17-
+#     dodecahydro-1H-cyclopenta[a]phenanthren-3-ol
+
+# Source file position: <groff-source>/contrib/chem/example/cholesterin.p
+# Installed position: <prefix>/share/doc/groff/example/chem/cholesterin.p
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+# Written by Bernd Warken <groff-bernd.warken-72@web.de>.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+R1:	ring6
+	bond -120 ; HO
+R2:	ring6 with .V5 at R1.V3 with .V6 at R1.V2 double 4,5
+	bond up at R2.V6
+R3:	ring6 with .V5 at R2.V1 with .V4 at R2.V2
+R4:	flatring5 pointing up with .V4 at R3.V3 with .V5 at R3.V2
+	bond up at R4.V5
+	bond up at R4.V1
+B1:	bond -60
+	bond 60 at B1.start
+	bond 120
+	bond 60
+	bond 120
+B2:	bond 60
+	bond down at B2.start
+
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ethamivan.chem:
+.cstart
+
+# Example file for 'chem':
+#   Ethamivan or Analepticon or C12_H17_N_O3 or
+#   N,N-diethyl-4-hydroxy-3-methoxy-benzamide
+
+# Source file position: <groff-source>/contrib/chem/example/ethamivan.chem
+# Installed position: <prefix>/share/doc/groff/example/chem/ethamivan.chem
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+# Written by Bernd Warken <groff-bernd.warken-72@web.de>.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+R:	ring pointing left double 2,3 4,5 6,1
+	bond left from R.V1 ; O
+	bond left ; H
+	bond -150 from R.V6 ; O
+	bond left
+	bond 60 from R.V4
+B1:	double bond up ; O
+	bond 120 from B1.start ; N
+	bond 45
+	bond right
+ 	bond 135 from N
+	bond right
+
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+lsd.chem:
+.cstart
+
+# Example file for 'chem':
+#   LSD or Lysergic acid dethylamide or C20_H25_N3O or
+#   9,10-Didehydro-N,N-diethyl-6-methyl-ergoline-8-beta-carboxamide
+
+# Source file position: <groff-source>/contrib/chem/example/lsd.p
+# Installed position: <prefix>/share/doc/groff/example/chem/lsd.p
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+# Written by Bernd Warken <groff-bernd.warken-72@web.de>.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+F:	flatring5 pointing left put N at 5 double 3,4
+	H below F.N
+B:	benzene pointing right with .V1 at F.V2
+R1:	ring pointing right with .V4 at B.V6
+	front bond right from R1.V6 ; H
+R2:	ring pointing right with .V2 at R1.V6 put N at 1 double 3,4
+	bond right from R2.N
+	back bond -60 from R2.V5 ; H
+	bond up from R2.V5
+B1:	double bond up ; O
+        bond right from B1.start ; N
+        bond 45
+	bond right
+        bond 135 from N
+	bond right
+
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+morphine.chem:
+.cstart
+
+# Example file for 'chem':
+#    Morphine or C23_H31_N3O or
+#    N,N-diethyl-N'-(2-methoxyacridin-9-yl)-pentane-1,4-diamine
+
+# Found at http://www.chemindustry.com/apps/chemicals.
+
+# Source file position: <groff-source>/contrib/chem/example/morphine.chem
+# Installed position: <prefix>/share/doc/groff/example/chem/morphine.chem
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+# Written by Bernd Warken <groff-bernd.warken-72@web.de>.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+R1:	benzene
+R2:	benzene with .V6 at R1.V2 with .V5 at R1.V3 put N at 4
+R3:	benzene with .V6 at R2.V2 with .V5 at R2.V3
+	bond 60 at R3.V2 ; O
+	bond 120
+	bond up at R2.V1 ; N
+	bond 60 ; H
+	bond -60 at N
+B1:	backbond -120
+	bond up at B1.start
+	bond -60
+	bond up
+	bond -60 ; N
+	bond up
+	bond -60
+	bond -120 at N
+	bond -60
+
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+penicillin.chem:
+.cstart
+
+# Example file for 'chem':
+#    Penicillin or C16_H18_N2_O4_S or
+#    3,3-dimethyl-6-oxo-7-(2-phenylacetyl)amino-2-thia-5-
+#      azabicyclo[3.2.0]heptane-4-carboxylic acid
+
+# Found at http://www.chemindustry.com/apps/chemicals.
+
+# Source file position: <groff-source>/contrib/chem/example/morphine.chem
+# Installed position: <prefix>/share/doc/groff/example/chem/morphine.chem
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+# Written by Bernd Warken <groff-bernd.warken-72@web.de>.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+R1:	flatring5 pointing up put S at 1 put N at 4
+	bond 45 at R1.V2
+	bond 135 at R1.V2
+	bond 120 at R1.V3
+D1:	doublebond 45 ; O
+	bond 135 at D1.start ; OH
+	bond left at R1.N
+	doublebond -135 ; O
+	bond left at R1.V5
+B1:	bond down length .3
+	bond -60 at B1.start ; N
+	bond up ; H
+	bond -120 at N
+D2:	doublebond down ; O
+	bond -60 at D2.start
+	bond -120
+	benzene
+
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+reserpine.chem:
+.PS
+begin chem
+
+# Example file for 'chem':
+#   Reserpine or C33H40N2O9
+
+# Source file position: <groff-source>/contrib/chem/example/reserpine.chem
+# Installed position: <prefix>/share/doc/groff/example/chem/reserpine.chem
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+# Written by Bernd Warken <groff-bernd.warken-72@web.de>.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+R1:	benzene pointing up
+	bond -120 from R1.V5 ; O
+	bond left
+R2:	flatring5 pointing down double 4,5 with .V2 at R1.V3 with .V3 at R1.V2 put N at 1
+	H below R2.V1
+R3:	ring put N at 3 with .V5 at R2.V5
+R4:	ring put N at 1 with .V1 at R3.V3
+	back bond -120 from R4.V4 ; H
+	back bond 60 from R4.V3 ; H
+R5:	ring with .V1 at R4.V3
+	bond -120
+D1:	double bond down ; O
+	bond left from D1.start ; O
+	bond left
+	back bond 60 from R5.V3 ; H
+	back bond down from R5.V4 ; O
+	bond down from O
+	bond 120 from R5.V3 ; O
+	bond 50 from O
+D2:	double bond up ; O
+	bond right length .1 from D2.start
+B:	benzene pointing right
+	bond 45 from B.V6 ; O
+	bond right
+	bond right from B.V1 ; O
+	bond right
+	bond 135 from B.V2 ; O
+	bond right
+
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+end
+.PE
+ch2a_ethyl.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	CH3
+	bond
+	CH2
+	bond
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch2b_benzene.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	benzene
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch2c_benzene_right.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	benzene pointing right       # a rotated benzene ring
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4a_stick.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	bond right
+	bond 60
+	bond 120
+	bond 60
+	bond 120
+	bond down
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4b_methyl_acetate.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+CH3      # the 3 is automatically turned into a subscript
+bond     # the implicit direction is right
+         # implicit connection is to right side of CH3
+C
+double bond 30     # by default, from the substituent C
+O
+bond 120 from C    # must be "from C"; otherwise would leave from O
+O
+bond right
+CH3
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4c_colon.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	CH3
+	bond ; C
+	double bond 30 ; O
+	bond 120 from C ; O
+	bond right ; CH3
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4d_HCl.H2O.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	HCl.H2O
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4e_CaSO4.2H2O.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	CaSO4.2H2O
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4f_C.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	bond ; C             # 1st definition of C
+	bond up from C
+	bond down from C
+	bond right from C ; C         # 2nd definition of C
+	bond up from C
+	bond down from C
+	bond right from C ; C         # 3rd definition of C
+	bond up from C
+	bond down from C
+	bond right from C
+
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4g_BP.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+# this is the isopropyl group
+    bond 120 ; BP       # BP is right end of this bond
+    bond -120 from BP
+    bond right from BP ; C
+    front bond up ; CH3
+    back bond down from C ; D
+    bond right from C ; BP
+# redefine BP to mean the center carbon of this t-butyl group
+    bond up from BP
+    bond right from BP
+    bond down from BP
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4h_methacrylate.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+    bond dotted
+    bond right ; BP
+    bond up from BP ; C
+    double bond -60 from C ; O
+    bond 60 length .1 from C ; OCH3
+    bond down from BP ; CH3
+# begin second segment of polymer
+    bond right length .5 from BP ; BP
+    bond up length .1 from BP ; H
+    bond down length .1 from BP ; H
+# begin third segment of polymer
+    bond right length .5 from BP ; BP
+    bond up from BP ; C
+    double bond -60 from C ; O
+    bond 60 length .1 from C ; OCH3
+    bond down from BP ; CH3
+# begin fourth segment of polymer
+    bond right length .5 from BP ; BP
+    bond up length .1 from BP ; H
+    bond down length .1 from BP ; H
+# begin fifth segment of polymer
+    bond right length .5 from BP ; BP
+    bond up from BP ; C
+    double bond -60 from C ; O
+    bond 60 length .1 from C ; OCH3
+    bond down from BP ; CH3
+    bond right from BP
+    bond dotted
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4i_cyclo.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R3:	ring3
+R4:	ring4 at R3 + (.75,0)
+R5:	ring5 at R4 + (.75,0)
+R6:	ring6 at R5 + (.75,0)
+B:	benzene at R6 + (.75,0)
+R7:	ring7 at B + (.75,0)
+R8:	ring8 at R7 + (.75,0)
+
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4j_ring4.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	ring4 pointing 45
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4k_ring3.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R: ring3
+   back bond 120 from R.V2 ; C2H5
+   front bond -120 from R.V3 ; HO
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4l_vertex.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R: benzene pointing right
+   bond left from R.V4 ; HO
+   bond -150 from R.V3 ; CH3O
+   bond right from R.V1 ; C
+   double bond up from C ; O
+   bond right from C ; N
+   bond 45 ; C2H5
+   bond 135 from N ; C2H5
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4m_double.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	ring double 1,2 3,4 5,6
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4n_triple.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	ring8 triple 3,4
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4o_aromatic.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R: aromatic ring7
+   "+" at R
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4p_cholestanol.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R1: ring6
+    "R1" at R1     # this puts a label at R1
+    front bond -120 from R1.V5 ; HO
+         # the following line says "fuse the next six-
+         # membered ring with its 6th vertex joining
+         # the second vertex of R1"
+R2: ring6 with .V6 at R1.V2
+    front bond up from R2.V6 ; CH3
+    back bond down from R2.V4 ; H
+    back bond down from R2.V1 ; H
+    front bond up from R2.V2 ; H
+R3: ring6 with .V4 at R2.V2
+R4: flatring with .V5 at R3.V2
+    front bond up from R4.V5 ; CH3
+    back bond down from R4.V4 ; H # this is the alkyl chain
+    bond up from R4.V1 ; BP
+    bond -60 from BP
+    bond 60 from BP
+    bond 120
+    bond 60
+    bond 120 ; BP
+    bond down from BP
+    bond 60 from BP
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4q_rings.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R3: ring3
+R4: ring4 pointing 45 with .V1 at R3.V2
+R5: ring5 pointing down with .V4 at R4.V2
+R6: ring6 pointing 54 with .V6 at R5.V5
+    # the following lines specify the labels inside the rings
+    "3" at R3
+    "4" at R4
+    "5" at R5
+    "6" at R6
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4r_spiro.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R1: ring6
+R2: ring6 with .V1 at R1.V4
+R3: ring5 with .V5 at R2.V3
+    back bond 60 from R3.V2 ; OH
+    front bond 150 from R3.V3 ; OH
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4s_heteroatoms.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	ring put N at 2 put S at 4 double 2,3 4,5 6,1
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4t_polycyclic.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R1: benzene pointing right
+    bond 30 from R1.V6 ; Br
+R2: benzene pointing right with .V5 at R1.V1
+R3: benzene pointing right with .V1 at R2.V3
+    bond 150 from R3.V2 ; CO2H
+R4: benzene pointing right with .V1 at R1.V3
+# next line names bond B1 so we can refer to its end
+B1: bond left from R4.V4
+    ring6 put N at 4 double 2,3 4,5 6,1 with .V3 at B1.end
+B2: bond right from R2.V1
+R5: benzene with .V5 at B2.end
+    ring6 put N at 4 double 1,2 3,4 with .V5 at R5.V3
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4u_nicotine.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+	benzene put N at 4
+	bond right
+	ring5 pointing down put N at 1
+	bond down from .N ; CH3        # or .V1
+
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4v_histidine.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R1: flatring pointing down put N at 2 put N at 5 double 1,2 3,4
+    H right of R1.V5
+    bond right from R1.V4 ; CH2
+    bond right ; C
+    bond up from C ; H
+    bond down from C ; NH2
+    bond right from C ; CO2H
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4w_lsd.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+B: benzene pointing right
+F: flatring pointing left put N at 5 double 3,4 with .V1 at B.V2
+   H below F.N
+R: ring pointing right with .V4 at B.V6
+   front bond right from R.V6 ; H
+W: ring pointing right with .V2 at R.V6 put N at 1 double 3,4
+   bond right from W.N ; CH3
+   back bond -60 from W.V5 ; H
+   bond up from W.V5 ; C
+   double bond up from C ; O
+   bond right from C ; N
+   bond 45 from N ; C2H5
+   bond 135 from N ; C2H5
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4x_anisole.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R1: benzene
+    bond down from R1.V4 ; OCH3
+R2: benzene at R1 + (1.5,0)
+    bond down from R2.V4 ; O
+    CH3 right of O
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4y_reserpine.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+# Some corrections were added.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+    CH3O
+    bond 60
+R1: benzene
+R2: aromatic flatring5 pointing down put N at 1 with .V3 at R1.V2
+    H below R2.V1
+R3: ring put N at 3 with .V5 at R2.V5
+R4: ring put N at 1 with .V1 at R3.V3
+    back bond -120 from R4.V4 ; H
+    back bond 60 from R4.V3 ; H
+R5: ring with .V1 at R4.V3
+    bond -120 ; C
+    double bond down from C ; O
+    CH3O left of C
+    back bond 60 from R5.V3 ; H
+    back bond down from R5.V4 ; O
+    CH3 right of O
+    bond 120 from R5.V3 ; O
+    bond right length .1 from O ; C
+    double bond down ; O
+    bond right length .1 from C
+B:  benzene pointing right
+    bond 30 from B.V6 ; OCH3
+    bond right from B.V1 ; OCH3
+    bond 150 from B.V2 ; OCH3
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch4z1_eqn_glutamic.chem:
+.br
+.EQ
+delim $$
+.EN
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+# Some corrections were added.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+# a left bracket
+    bond right length .1 ; BP
+    bond up length .3
+    bond right length .1
+    bond down length .3 from BP
+    bond right length .1
+# this is the mainchain amide structure
+    bond right length .1 from BP ; NH
+    bond right ; CH
+# label the CH with an alpha, intended for eqn.
+# this line says "put the north edge of the alpha at the
+# south edge of the CH"
+    "$alpha$" with .n at CH.s
+    bond right from CH ; C
+    double bond up from C ; O
+    bond right length .1 from C ; BP
+# a right bracket
+    bond up length .3
+    bond left length .1
+    bond right length .1 from BP
+    bond down length .3 from BP ; BP
+    bond left length .1
+# label the degree of polymerization
+    "$n$" with .w at BP.se
+# this is the sidechain
+    bond up from CH ; CH2
+    "$beta$" with .e at CH2.w
+    bond up from CH2 ; CH2
+    "$gamma$" with .e at CH2.w
+    bond up from CH2 ; C
+# this is the benzyl ester part
+    double bond -60 from C ; O
+    bond 60 from C ; O
+    bond right ; CH2C6H5
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+.EQ
+delim off
+.EN
+ch4z2_text.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+    bond 120 dotted
+    bond 120 length .3 ; BP
+    back bond -120 length .25 from BP ; H
+    front bond 120 length .25 from BP ; CH3
+    bond 60 length .5 from BP ; BP
+    bond -60 length .25 from BP ; H
+# note the pic move command to position the text
+    move left .35 ; "(ANTI)"
+    front bond 60 length .25 from BP ; H
+# another positioning of text
+    move right .35 ; "(SYN)"
+    bond 120 length .4 from BP ; BP
+    back bond -120 length .25 from BP ; H
+    front bond 120 length .25 from BP ; CH3
+    bond 60 length .5 from BP
+    bond 60 dotted
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch5a_size.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+.ps 14
+size 16
+R: ring6 put O at 1 put C at 2 put O at 3 put C at 4 put O at 5 put C at 6
+   double bond 60 from R.V2 ; NH
+   double bond down from R.V4 ; NH
+   double bond -60 from R.V6 ; HN
+size 10 # if you are doing more than one
+.ps 10
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch6a_pic.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R:	ring double 2,3
+	line from R.V6 to R.C
+	line from R.C to R.V4
+	X1: 1/2 <R.V5,R.C>
+	X2: 1/2 <R.C,R.V2>
+	bond from X1 to X2
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+ch6b_dna.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+P: [
+R1:  flatring pointing up put N at 1 put N at 4 double 5,1
+     bond -135 from R1.V4 ; BP
+     "deoxyribose" rjust with .e at BP.w
+R2:  ring6 put N at 2 put N at 4 double 1,2 3,4 5,6 with .V6 at R1.V2
+     pic Conn: R2.V2.ne #because naming is too restricted in pic
+     bond up from R2.V1 ; N
+     bond -60 from N ; H
+     bond 60 from N ; H
+]
+     # thymine
+Q: [
+R3:  ring6 put N at 3 put N at 5 double 1,2
+     bond up from R3.V1 ; CH3
+     bond 120 from R3.V3 ; BP
+     "deoxyribose" ljust with .w at BP.e
+     double bond down from R3.V4 ; O
+     double bond -60 from R3.V6 ; O
+     bond -120 from R3.V5 ; H
+] with .O at P.H + (.3,.3)
+     bond from Q.O.sw to P.H.ne dotted
+     bond from Q.H.sw to P.Conn dotted
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chAa_polymer.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+# epoxy based on the m-phenyldiamine cured bisphenol-A
+     size 8
+     bond dotted
+     bond ; N
+     bond ; CH2
+     bond down from N
+R1:  benzene
+     bond 120 length .1 from R1.V3 ; N
+     bond right length .1 from N
+     bond down length .1 from N
+# back to the CH2
+     bond right from CH2 ; CH
+     bond down from CH ; OH
+     bond right from CH ; CH2
+     bond right ; O
+     bond right
+     benzene pointing right
+     bond right ; C
+     bond up from C ; CH3
+     bond down from C ; CH3
+     bond right from C
+     benzene pointing right
+     bond right ; O
+     bond right from O ; CH2
+     bond right ; CH
+     bond down from CH ; OH
+     bond right from CH ; CH2
+     bond right ; N
+     bond right from N
+     bond dotted
+     bond down from N
+R2:  benzene
+     bond 120 length .1 from R2.V3 ; N
+     bond right length .1 from N
+     bond down length .1 from N
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chAb_vinyl_chloro.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+    Cl
+    bond 120 length .25 ; BP
+    bond 60 length .25 from BP ; Cl
+B1: double bond down length .3 from BP
+    bond 120 length .35 ; BP
+# now comes the ring
+R1: ring6 double 1,2 3,4 5,6 with .V6 at BP
+    bond up length .1 from R1.V1 ; H
+    bond 60 length .1 from R1.V2 ; H
+    bond 120 from R1.V3 ; O
+    bond 60 from O ; C
+    double bond up from C ; O
+    bond 120 from C
+# continue decorating the ring
+    bond down length .1 from R1.V4 ; H
+    bond -120 length .1 from R1.V5 ; H
+# now go back and do the left hand ring
+    bond -120 length .35 from B1.end ; BP
+R2: ring6 double 1,2 3,4 5,6 with .V2 at BP
+    bond up length .1 from R2.V1 ; H
+    bond -60 length .1 from R2.V6 ; H
+    bond -120 from R2.V5 ; O
+    bond -60 from O
+    bond down length .1 from R2.V4 ; H
+    bond 120 length .1 from R2.V3 ; H
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chAc_morphine.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R1:  ring6 double 1,2
+     bond -60 from R1.V6 ; HO
+R2:  ring6 with .V1 at R1.V3
+     bond 60 from R2.V2 ; N
+     bond right from N ; CH3
+R3:  benzene with .V1 at R2.V5
+     bond -120 from R3.V5 ; HO
+# this is the furan ring
+     bond -135 length .33 from R1.V5 ; O
+     bond -45 length .33 from R3.V6
+# this is the odd ring
+     bond up length .1 from N ; BP
+B1:  bond up length .33 from R1.V4
+     bond to BP
+
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chAd_chlorophyll.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+    Mg
+    bond 45 ; N
+R1: ring5 pointing up put N at 4 double 1,2 4,5 with .V4 at N
+         bond up from R1.V1 ; CH3
+         bond right from R1.V2 ; CH2CH3
+    bond 135 from Mg ; N
+R2: ring5 pointing down put N at 3 double 1,2 4,5 with .V3 at N
+         bond right from R2.V5 ; CH3
+    bond 225 from Mg ; N
+R3: ring5 pointing down put N at 4 double 3,4 with .V4 at N
+    bond -45 from Mg ; N
+R4: ring5 pointing up put N at 3 double 1,5 with .V3 at N
+         bond left from R4.V5 ; H3C
+         bond up from R4.V1 ; CH
+         double bond right length .1 from CH ; CH2
+    double bond 150 length .3 from R1.V3
+    bond to R2.V4
+R5: ring5 pointing 72 with .V5 at R2.V2
+         double bond 135 from R5.V2 ; O
+         bond down from R5.V3 ; C
+         double bond left length .1 from C ; O
+         bond down from C ; O
+         CH3 left of O
+    double bond -25 from R5.V4
+    bond down from R3.V1 ; CH2
+    CH2 left of CH2
+    bond left ; C
+    double bond -45 ; O
+    bond -135 from C ; C20H39O
+    bond left from R3.V2 ; H3C
+    double bond -150 length .3 from R4.V4
+    bond to R3.V3
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chAe_chair.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+pic define chair { [
+    V1: bond 120 length .25
+    V2: bond right length .35
+    V3: bond 150 length .35
+    V4: bond -60 length .25
+    V5: bond left length .35
+    V6: bond to V1.start
+pic ] }
+R1: chair
+R2: chair with .V1 at R1.V4.start
+bond 60 from R2.V4.start ; CH3
+bond down from R2.V4.start ; OH
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chAf_arrow.chem:
+.br
+.EQ
+delim $$
+.EN
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+    bond length .1 ; BP
+    bond up length .5
+    bond right
+    bond down length .5 from BP
+    bond right
+    bond right from BP ; C
+    double bond up ; O
+    bond right from C
+    benzene pointing right
+    bond right ; C
+    double bond up from C ; O
+    bond right from C ; O
+    bond right ; CH2
+# this is the statement to make the arrow
+    line <- from CH2.s down
+    move down .1 ; "0.085"
+    CH2CH2CH2 right of CH2
+    bond right ; O
+    bond right length .1 ; BP
+    bond up length .5 from BP
+    bond left
+    bond right length .1 from BP
+    bond down length .5 from BP ; BP
+    bond left
+    "$n$" with .w at BP.se
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+.EQ
+delim off
+.EN
+chAg_circle.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+bond 120 ; C
+bond 60 ; C
+bond up ; Cl
+double bond 120 from C ; C
+bond 60 ; C
+bond 120 ; C
+bond 60 ; C
+bond up ; Cl
+double bond 120 from C ; C
+circle at C rad .08
+bond 60 from C ; C
+bond 120 ; C
+bond 60 ; C
+double bond 120 ; C
+bond down ; Cl
+bond 60 from C ; C
+bond 120
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chAh_brackets.chem:
+.br
+.EQ
+delim $$
+.EN
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+[
+    bond right ; CH2
+    bond 120 ; (CH2)
+    "$nothing sub n$"
+    bond 60 ; .CH2
+]
+# now put the arrow in
+    move right .3
+    arrow .5
+    move right .3
+# begin second structure
+[
+    bond right ; CH.
+    bond 120 ; (CH2)
+    "$nothing sub n$"
+    bond 60 ; CH3
+]
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+.EQ
+delim $$
+.EN
+chAi_poly_vinyl_chloride.chem:
+.br
+.ps -2
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+db = .12
+cwid = .095
+A: [
+      bond dotted
+      bond right ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; C.
+      bond down ; Cl
+      bond right from C ; CH2
+      bond ; CH2
+      bond down ; Cl
+]
+"     (6.13a)" ljust at A.e
+arrow down .5 from A.s
+[
+      CH2
+      double bond right ; CHCl
+] with .w at last arrow.c
+B: [
+      bond dotted
+      bond right ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; C
+      bond up ; Cl
+      bond down from C ; CH2
+      bond ; CH2Cl
+      bond right from C ; CH2
+      bond ; CH
+      bond down ; Cl
+      bond right from CH
+      bond dotted
+] with .n at end of last arrow
+"     (6.13b)" ljust at B.e
+C: [
+      bond dotted
+      bond right ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; C.
+      bond down ; Cl
+      bond right from C ; CH2
+      bond ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; CH2
+      bond down ; Cl
+] with .n at B.s - (0,.5)
+"     (6.14a)" ljust at C.e
+arrow down .3 from C.s
+[
+      CH2
+      double bond right
+      CHCl
+] with .w at last arrow.s
+arrow down .3 from last arrow.s
+
+D: [
+      bond dotted
+      bond right ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; C
+      bond up ; Cl
+      bond down from C ; CH2
+      bond ; CHCl
+      bond ; CH2
+      bond ; CH2Cl
+      bond right from C ; CH2
+      bond ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; CH
+      bond down ; Cl
+      bond right from CH
+      bond dotted
+] with .n at last arrow.s
+"     (6.14b)" ljust at D.e
+E: [
+      bond dotted
+      bond ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; CH
+      bond down ; Cl
+      bond right from CH ; CH2
+      bond ; CH
+      bond down ; Cl
+] with .e at B.w - (.5,0)
+
+arrow from E.ne to A.sw
+arrow from E.se to C.nw
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+.ps +2
+chBa_jump.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+SiO2          # name = SiO2
+move right 1
+CH3CH2NH2.HCl # name = CH3CH2NH2HCl
+
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chBb_bonds.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+C
+frontbond -170 from C ; H
+backbond 10 from C ; CO2H
+bond left length .15 from C ; H2N
+bond right from C ; CH3
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend
+chBc_rings.chem:
+.br
+.cstart
+
+# Example file for 'chem':
+
+# This originates from Computing Science Technical Report No. 122
+#   CHEM - A Program for Typesetting Chemical Diagrams: User Manual
+#   by Jon L. Bentley, Lynn W. Jelinski, Brian W. Kernighan
+#   <http://cm.bell-labs.com/cm/cs/cstr/122.ps.gz>.
+
+# Copyright (C) 2006-2018 Free Software Foundation, Inc.
+
+# This file is part of 'chem', which is part of 'groff'.
+
+# 'groff' is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (GPL) version 2 as
+# published by the Free Software Foundation.
+
+# 'groff' is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# The GPL2 license text is available in the internet at
+# <http://www.gnu.org/licenses/gpl-2.0.html>.
+
+########################################################################
+
+R1: benzene
+    bond -120 from R1.V5 ; CH3O
+R2: ring4 pointing 45 with .V4 at R1.V2
+R3: aromatic ring6 put N at 4 put S at 2 at R2 + (.75,0)
+R4: ring5 pointing left at R3 + (.75,0)
+    label R4
+
+########################################################################
+### Emacs settings
+# Local Variables:
+# mode: Nroff
+# End:
+.cend

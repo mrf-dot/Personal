@@ -1,4 +1,6 @@
 #include <stdio.h>
+#define \t ){
+#define :
 
 int
 main() {
