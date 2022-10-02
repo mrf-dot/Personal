@@ -1,4 +1,4 @@
-/* Header files to make C flow like (mostly) gramattically correct english */
+/* Header files to make C flow like (mostly) grammatically correct English */
 #define when if(
 #define equal =
 #define equals =
@@ -30,14 +30,14 @@
 #define than
 #define nothing
 #define cast (
-#define to )
 #define with (
-#define important )
 #define using (
 #define require (
 #define requires (
 #define requiring (
 #define supplied )
+#define to )
+#define important )
 #define also ,
 #define greater >
 #define less <
@@ -51,17 +51,17 @@
 #define seven 7
 #define eight 8
 #define nine 9
-#define zeroth 0
-#define first 1
-#define second 2
-#define third 3
-#define fourth 4
-#define fifth 5
-#define sixth 6
-#define seventh 7
-#define eighth 8
-#define ninth 9
+#define zeroth 0]
+#define first 1]
+#define second 2]
+#define third 3]
+#define fourth 4]
+#define fifth 5]
+#define sixth 6]
+#define seventh 7]
+#define eighth 8]
+#define ninth 9]
 #define get [
 #define element ]
-#define always int main(int argc, char** argv
+#define always int main(int argc, char**argv
 
