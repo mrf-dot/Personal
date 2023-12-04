@@ -1,6 +1,6 @@
 /* Outputs fizzbuzz in c */
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <string.h>
 
 int main() {
 	char fizzstring[20];

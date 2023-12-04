@@ -1,3 +1,4 @@
+#!/bin/env pwsh
 Write-Output "American Flag:`n"
 Write-Output "`e[48;5;17m* * * * * * * * * * `e[48;5;124m$(" " * 27)`e[0m"
 for ($i = 0; $i -lt 3; $i++) {

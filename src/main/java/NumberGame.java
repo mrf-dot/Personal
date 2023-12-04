@@ -20,13 +20,7 @@ public class NumberGame {
 	 * @param args added for semantics
 	 */
 	public static void main(String[] args) {
-		System.out.print("This is a number guessing game.\n"
-				+ "1\t1-100\n"
-				+ "2\t1-1,000\n"
-				+ "3\t1-10,000 (Default)\n"
-				+ "4\t1-100,000\n"
-				+ "5\t1-1,000,000\n"
-				+ "Select a range: ");
+		System.out.print("This is a number guessing game.\n1\t1-100\n2\t1-1,000\n3\t1-10,000 (Default)\n4\t1-100,000\n5\t1-1,000,000\nSelect a range: ");
 		int difficulty = getDifficulty();
 		int rounds = 0;
 		int wins = 0;

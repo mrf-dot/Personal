@@ -5,8 +5,9 @@
 #include <unistd.h>
 
 #define ACEHIGH 11
+#define BALANCE 10000
 #define BLACKJACK 21
-#define BLACKONWHITE "\e[0;30m\e[47m"
+#define BLACKONWHITE "\033[0;30m\033[47m"
 #define CARDHEIGHT 7
 #define COLOR(SUITE) (((SUITE) == 1 || (SUITE) == 2) ? REDONWHITE : BLACKONWHITE)
 #define DEALERMIN 16
@@ -26,12 +27,12 @@ Options:\n\
 \t-h\t\tPrint this help message\n"
 #define MAXHAND 5
 #define PAYOUT 1.5
-#define REDONWHITE "\e[0;31m\e[47m"
-#define RESET "\e[0m"
+#define REDONWHITE "\033[0;31m\033[47m"
+#define RESET "\033[0m"
 #define SPACES(RANK) (((RANK) == -1) ?  "           " : !strcmp(RANKS[(RANK)], "10") ? "         " : "          ")
-#define UNFLIPPED "\e[0;31m\e[44mXXXXXXXXXX\e[0m\t"
-#define WHITE "\e[0;47m"
-
+#define UNFLIPPED "\033[0;31m\033[44mXXXXXXXXXX\033[0m\t"
+#define WHITE "\033[0;47m"
+#define CLEAR "\033[1;1H\033[2J"
 
 const char *RANKS[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 const char *SUITES[] = {"♣","♦","♥", "♠"};
@@ -130,16 +131,23 @@ hand_sum(int *hand, int size) {
 	return aces && sum + ACEHIGH - 1 <= BLACKJACK ? sum + ACEHIGH - 1 : sum;
 }
 
+void
+dispmon(int sum) {
+	printf("$%d.%d%d", sum / 100, sum % 100 / 10, sum % 10);
+}
+
 int
 get_bet(struct Gambler *g) {
-	printf("Make a bet (balance: %d)\t", g->balance);
+	printf("Make a bet (balance: ");
+	dispmon(g->balance);
+	fputs(")\t", stdout);
 	int bet;
 	do {
 		putchar('$');
 		if (!scanf("%d", &bet))
 			fputs("Failed to read integer.\n", stderr);
 		while(getchar() != '\n');
-	} while (bet <= 0 || bet > g->balance);
+	} while ((bet*=100) < 100  || bet  > g->balance);
 	g->balance -= bet;
 	return bet;
 }
@@ -158,9 +166,13 @@ prep_game(struct Gambler *dealer, struct Gambler *player) {
 
 void
 show_hands(struct Gambler *dealer, struct Gambler *player) {
-	puts("\nDealer's hand:");
+	puts(CLEAR);
+	printf("Player Balance: ");
+	dispmon(player->balance);
+	putchar('\n');
+	puts("\nDealer's Hand:");
 	print_cards(dealer->hand, dealer->ncards);
-	puts("Player's hand:");
+	puts("Player's Hand:");
 	print_cards(player->hand, player->ncards);
 }
 
@@ -168,22 +180,26 @@ void
 contest(struct Gambler *dealer, struct Gambler *player, int bet) {
 	puts("\nDealer's turn:");
 	dealer->hand[0] = cards[--cardssize];
-	print_cards(dealer->hand, dealer->ncards);
+	show_hands(dealer, player);
 	int player_sum = hand_sum(player->hand, player->ncards);
 	int dealer_sum;
 	while ((dealer_sum = hand_sum(dealer->hand, dealer->ncards)) < DEALERMIN && dealer_sum < player_sum) {
 		DEAL(dealer);
-		print_cards(dealer->hand, dealer->ncards);
+		show_hands(dealer, player);
 	}
 	if (dealer_sum > BLACKJACK || dealer_sum < player_sum) {
-		printf("You win! (+$%d)\n", (int) (bet * PAYOUT - bet));
+		printf("You win! (+");
+		dispmon(bet * PAYOUT - bet);
+		puts(")");
 		bet *= PAYOUT;
 		player->balance += bet;
 	} else if (dealer_sum == player_sum) {
 		player->balance += bet;
 		puts("Draw.");
 	} else {
-		printf("You lose! (-$%d)\n", bet);
+		printf("You lose! (-");
+		dispmon(bet);
+		puts(")");
 	}
 }
 
@@ -193,17 +209,21 @@ PLAY:
 	switch (action()) {
 	case 'H': case 'h':
 		DEAL(player);
-		print_cards(player->hand, player->ncards);
+		show_hands(dealer, player);
 		if (hand_sum(player->hand, player->ncards) <= BLACKJACK)
 			goto PLAY;
-		printf("You've lost this round. (-%d)\n", bet);
+		fputs("You've lost this round. (-", stdout);
+		dispmon(bet);
+		puts(")");
 		break;
 	case 'S': case 's':
 		contest(dealer, player, bet);
 		break;
 	case 'F': case 'f':
 		bet /= 2;
-		printf("You've surrendered this round. (-%d)\n", bet);
+		fputs("You've surrendered this round. (-", stdout);
+		dispmon(bet);
+		puts(")");
 		player->balance += bet;
 		break;
 	case 'Q': case 'q':
@@ -216,14 +236,14 @@ PLAY:
 void
 blackjack() {
 	struct Gambler player, bot;
-	player.balance = 100;
+	player.balance = BALANCE;
 	int bet;
 	do {
 		bet = get_bet(&player);
 		prep_game(&bot, &player);
 		show_hands(&bot, &player);
 		play(&bot, &player, bet);
-	} while (player.balance > 0);
+	} while (player.balance > 99);
 	puts("You've gone bust!");
 }
 
