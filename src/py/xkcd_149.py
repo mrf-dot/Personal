@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from os import name, system
 from os import system
 
