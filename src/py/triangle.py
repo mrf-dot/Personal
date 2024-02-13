@@ -1,7 +1,2 @@
 def valid_triangle(a, b, c):
-    return not (a < 0
-            or b < 0
-            or c < 0
-            or a + b < c
-            or a + c < b
-            or b + c < a)
+    return a > 0 and b > 0 and c > 0 and a + b > c and a + c > b and b + c > a

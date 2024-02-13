@@ -1,4 +1,9 @@
-#!/bin/env pwsh
+#include <stdio.h>
+
+void spaces() {
+}
+void american() {
+}
 Write-Output "American Flag:`n"
 Write-Output "`e[48;5;17m* * * * * * * * * * `e[48;5;124m$(" " * 27)`e[0m"
 for ($i = 0; $i -lt 3; $i++) {
@@ -9,12 +14,12 @@ for ($i = 0; $i -lt 3; $i++) {
 	Write-Output "`e[47m$(" " * 47)`e[0m"
 	Write-Output "`e[48;5;124m$(" " * 47)`e[0m"
 }
-#####################################################################################
+void french() {
+}
 Write-Output "`nFrench Flag:`n"
 for ($i = 0; $i -lt 15; $i++) {
 	Write-Output "`e[48;5;17m$(" " * 15)`e[47m$(" " * 15)`e[41m$(" " * 15)`e[0m"
 }
-#####################################################################################
 Write-Output "`nSwiss Flag:`n"
 for ($i = 0; $i -lt 6; $i++) {
 	Write-Output "`e[41m$(" " * 64)`e[0m"
@@ -31,7 +36,8 @@ for ($i = 0; $i -lt 7; $i++) {
 for ($i = 0; $i -lt 6; $i++) {
 	Write-Output "`e[41m$(" " * 64)`e[0m"
 }
-#####################################################################################
+void greek() {
+}
 Write-Output "`nGreek Flag:`n"
 for ($i=0; $i -lt 2; $i++) {
 	Write-Output "`e[48;5;17m$(" " * 8)`e[47m$(" " * 4)`e[48;5;17m$(" " * 42)`e[0m"
@@ -55,6 +61,8 @@ for ($i=0; $i -lt 2; $i++) {
 	Write-Output "`e[48;5;17m$(" " * 54)`e[0m"
 }
 #####################################################################################
+void norwegian() {
+}
 Write-Output "`nNorwegian Flag:`n"
 for ($i=0; $i -lt 6; $i++) {
 	Write-Output "`e[41m$(" " * 12)`e[47m  `e[48;5;17m$(" " * 4)`e[47m  `e[41m$(" " * 24)`e[0m"
@@ -68,6 +76,8 @@ for ($i=0; $i -lt 6; $i++) {
 	Write-Output "`e[41m$(" " * 12)`e[47m  `e[48;5;17m$(" " * 4)`e[47m  `e[41m$(" " * 24)`e[0m"
 }
 #####################################################################################
+void tongan() {
+}
 Write-Output "`nTongan Flag:`n"
 Write-Output "`e[47m$(" " * 24)`e[41m$(" " * 40)`e[0m"
 for ($i=0; $i -lt 2; $i++) {
@@ -142,3 +152,4 @@ Write-Output "`e[47m$(" " * 16)`e[48;5;1m$(" " * 4)`e[47m$(" " * 30)`e[0m"
 for ($i = 0; $i -lt 7; $i++) {
 	Write-Output "`e[48;5;18m$(" " * 14)`e[47m$(" " * 2)`e[48;5;1m$(" " * 4)`e[47m$(" " * 2)`e[48;5;18m$(" " * 28)`e[0m"
 }
+

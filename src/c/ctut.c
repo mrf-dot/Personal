@@ -3,7 +3,7 @@
 
 int main() {
 	char c;
-	while ((c=getchar())!='\0')
+	while ((c=getchar())!=EOF)
 		putchar(c);
 	return 0;
 }
