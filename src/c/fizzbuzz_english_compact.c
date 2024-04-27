@@ -2,7 +2,8 @@
 #include "english.h"
 
 valueless fizzbuzz requiring nothing evaluates let i equal one then while i
-less than 101 evaluates when i mod is zero evaluates puts with "FizzBuzz"
+less than 101 evaluates when i mod five is zero
+and i mod three is zero evaluates puts with "FizzBuzz"
 supplied finish otherwise when i mod five is zero evaluates puts with "Buzz"
 supplied finish otherwise when i mod three is zero evaluates puts with "Fizz"
 supplied finish alternatively evaluates printf with "%d\n" also i supplied
